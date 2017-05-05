@@ -226,91 +226,91 @@ de:
         alt: 'Urkunde'
 
     advanced_user_narrative:
-      cert_title: "In recognition of successful completion of the advanced user tutorial"
-      title: ':arrow_up: Advanced user features'
+      cert_title: "In Anerkennung des erfolgreichen Abschlusses des Tutorials für fortgeschrittene Benutzer"
+      title: ':arrow_up: Fortgeschrittene Benutzerfunktionen'
       start_message: |-
-        Hi @%{username}, let’s cover some advanced features.
+        Hallo @%{username}, lass’ uns ein paar fortgeschrittene Funktionen betrachten.
 
       edit:
-        bot_created_post_raw: "@%{discobot_username} is, by far, the coolest bot I know :wink:"
+        bot_created_post_raw: "@%{discobot_username} ist bei weitem der cooleste Bot, den ich kenne :wink:"
         instructions: |-
-          Everyone makes mistakes. But don’t worry, you can always edit your posts to fix them!
+          Jeder macht Fehler. Aber keine Sorge, du kannst deine Beiträge immer bearbeiten, um sie zu korrigieren!
 
-          Can you begin by **editing** the post I just created on your behalf?
+          Kannst du beginnen, indem du den Beitrag **bearbeitest**, den ich gerade in deinem Namen erstellt habe?
         not_found: |-
-          It looks like you’ve yet to edit the [post](%{url}) I created for you. Can you try again?
+          Es sieht so aus als solltest du noch den [Beitrag](%{url}) bearbeiten, den ich für dich erstellt habe. Kannst du es nochmal versuchen?
 
-          Use the <img src="/images/font-awesome-pencil.png" width="16" height="16"> icon to bring up the editor.
+          Verwende das <img src="/images/font-awesome-pencil.png" width="16" height="16">-Symbol, um den Editor zu öffnen.
         reply: |-
-          Great work!
+          Großartige Arbeit!
 
-          Note that edits made after 5 minutes will show up as public edit revisions, and a little pencil icon will appear at the upper right with the revision count.
+          Beachte, dass Änderungen, die nach 5 Minuten gemacht werden, als öffentliche Änderungsversionen angezeigt werden und ein kleines Bleistift-Symbol oben rechts mit der Anzahl der Versionen erscheint.
 
       delete:
         instructions: |-
-          If you’d like to withdraw a post you made, you can delete it.
+          Wenn du einen Beitrag zurückziehen möchtest, den du gemacht hast, kannst du ihn löschen.
 
-          Go ahead and **delete** any of your posts above by using the <img src="/images/font-awesome-trash.png" width="16" height="16"> **delete** action.
+          Leg’ los und **lösche* einen deiner Beiträge, indem du die <img src="/images/font-awesome-trash.png" width="16" height="16"> **Löschen**-Aktion verwendest.
         not_found: |-
-          I don’t see any deleted posts yet? Remember <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> show more will reveal <img src="/images/font-awesome-trash.png" width="16" height="16"> delete.
+          Ich sehe noch keine gelöschten Beiträge? Denke daran, dass die <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> „Mehr anzeigen“-Schaltfläche die <img src="/images/font-awesome-trash.png" width="16" height="16"> „Löschen“-Schaltfläche anzeigt.
         reply: |-
-          Whoa! :boom:
+          Wow! :boom:
 
-          To preserve continuity of discussions, deletes aren’t immediate, so the post will be removed after some time.
+          Um die Kontinuität deiner Diskussionen zu bewahren, sind Löschungen nicht unmittelbar, sondern Beiträge werden erst nach einer gewissen Zeit entfernt.
 
       recover:
-        deleted_post_raw: 'Why did @%{discobot_username} delete my post? :anguished:'
+        deleted_post_raw: 'Warum hat @%{discobot_username} meinen Beitrag gelöscht? :anguished:'
         instructions: |-
-          Oh no! It looks like I accidentally deleted a new post that I just created for you.
+          Oh nein! Es sieht so aus, als hätte ich versehentlich einen neuen Beitrag gelöscht, den ich gerade für dich erstellt hatte.
 
-          Can you do me a favor and <img src="/images/font-awesome-rotate-left.png" width="16" height="16"> **undelete** it?
+          Kannst du mir einen Gefallen tun und ihn <img src="/images/font-awesome-rotate-left.png" width="16" height="16"> **wiederherstellen**?
         not_found: |-
-          Having trouble? Remember <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> show more will reveal <img src="/images/font-awesome-rotate-left.png" width="16" height="16"> undelete.
+          Hast du Schwierigkeiten? Denke daran, dass die <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> „Mehr anzeigen“-Schaltfläche die  <img src="/images/font-awesome-rotate-left.png" width="16" height="16"> „Wiederherstellen“-Schaltfläche anzeigt.
         reply: |-
-          Phew, that was a close one! Thanks for fixing that :wink:
+          Puh, das war knapp! Danke, dass du das korrigiert hast :wink:
 
-          Do note that you only have 24 hours to undelete a post.
+          Bitte beachte, dass du nur 24 Stunden hast, um einen Beitrag wiederherzustellen.
 
       category_hashtag:
         instructions: |-
-          Did you know that you can refer to categories and tags in your post? For example, have you seen the %{category} category?
+          Wusstest du, dass du auf Kategorien und Schlagwörter in deinen Beiträgen verweisen kannst? Zum Beispiel, hast du die Kategorie %{category} schon gesehen?
 
-          Type `#` in the middle of a sentence and select any category or tag.
+          Gib `#` in der Mitte eines Satzes ein und wähle eine Kategorie oder ein Schlagwort aus.
         not_found: |-
-          Hmm, I don’t see a category in there anywhere. Note that `#` can't be the first character. Can you copy this in your next reply?
+          Hm, ich sehe darin nirgendwo eine Kategorie. Beachte, dass `#` nicht das erste Zeichen sein darf. Kannst du dies in deine nächste Antwort kopieren?
 
-              I can create a category link via #
+              Ich kann einen Kategorie-Link per #
         reply: |-
-          Excellent! Remember this works for both categories _and_ tags, if tags are enabled.
+          Hervorragend! Denke daran, dass dies sowohl für Kategorien _als auch_ für Schlagwörter funktioniert, sofern Schlagwörter aktiviert sind.
 
       change_topic_notification_level:
         instructions: |-
-          Every topic has a notification level. It starts at 'normal', which means you’ll normally only be notified when someone is speaking directly to you.
+          Jedes Thema hat eine Benachrichtigungsstufe. Es beginnt bei „Normal“, was bedeutet, dass du normalerweise nur benachrichtigt wirst, wenn dich jemand direkt anspricht.
 
-          By default, the notification level for a private message is set to the highest level of 'watching', which means you you’ll be notified of every new reply.  But you can override the notification level for _any_ topic to 'watch', 'tracking' or 'muted'.
+          Standardmäßig ist die Benachrichitgungsstufe für Nachrichten auf die höchste Stufe „Beobachten“ gesetzt, was bedeutet, dass du über jede Antwort informiert wirst. Aber du kannst die Benachrichtigungsstufe für _jedes_ Thema überschreiben zu „Beobachten“, „Verfolgen“ oder „Stummgeschaltet“.
 
-          Let’s try changing the notification level for this topic. At the bottom of the topic, you’ll find a button which shows that you’re **watching** this topic. Can you change the notification level to **tracking**?
+          Lass’ uns versuchen, die Benachrichtigungsstufe für dieses Thema zu ändern. Am Ende des Themas wirst du eine Schaltfläche finden, die „Beobachten“ anzeigt. Kannst du die Benachrichtigungsstufe auf **Verfolgen** ändern?
         not_found: |-
-          It looks like you’re still watching :eyes: this topic! If you’re having trouble finding it, the notification level button is located at the bottom of the topic.
+          Es sieht so aus als beobachtest du :eyes: dieses Thema noch! Falls du Probleme hast es zu finden: die Schaltfläche für die Benachrichtigungsstufe befindet sich am Ende des Themas.
         reply: |-
-          Awesome work! I hope you didn’t mute this topic since I can be a little talkative at times :grin:.
+          Fantastische Arbeit! Ich hoffe, dass du das Thema stummgeschaltet hast, denn ich kann manchmal ein bisschen gesprächig sein :grin:.
 
-          Note that when you reply to a topic, or read a topic for more than a few minutes, it is automatically set to a notification level of 'tracking'. You can change this in [your user preferences](/my/preferences).
+          Beachte dass wenn du auf ein Thema antwortest oder ein Thema länger als ein paar Minuten liest, die Benachrichtigungsstufe automatisch auf „Verfolgen“ geändert wird. Du kannst dies in [deinen Benutzer-Einstellungen](/my/preferences) ändern.
 
       poll:
         instructions: |-
-          Did you know you can add a poll to any post? Try using the <img src="/images/font-awesome-gear.png" width="16" height="16"> gear in the editor to **build a poll**.
+          Wusstest du, dass du eine Umfrage zu einem beliebigen Beitrag hinzufügen kannst? Versuche dazu das <img src="/images/font-awesome-gear.png" width="16" height="16"> Zahnrad im Editor zu verwenden und wähle **Umfrage erstellen** aus.
         not_found: |-
-          Whoops! There wasn’t any poll in your reply.
+          Oops! Da war keine Umfrage in deiner Antwort.
 
-          Use the <img src="/images/font-awesome-gear.png" width="16" height="16"> gear icon in the editor, or copy and paste this poll in your next reply:
+          Verwende das <img src="/images/font-awesome-gear.png" width="16" height="16"> Zahnrad im Editor, oder kopiere diese Umfrage und füge sie in deine nächste Antwort ein:
 
               [poll]
               * :cat:
               * :dog:
               [/poll]
         reply: |-
-          Hey, nice poll! How’d I do in teaching you?
+          Hey, nette Umfrage! Wie mache ich mich als Lehrer?
 
           [poll]
           * :+1:
@@ -318,35 +318,35 @@ de:
           [/poll]
       details:
         instructions: |-
-          Sometimes you may wish to **hide details** in your replies:
+          Manchmal möchtest du vielleicht in deinen Antworten **Details ausblenden**:
 
-          - When you’re discussing plot points of a movie or TV show that would be a considered a spoiler.
+          - Wenn du Handlungen eines Films oder einer TV-Serie diskutierst, die als Spoiler betrachtet werden könnten.
 
-          - When your post needs lots of optional details that may be overwhelming when read all at once.
+          - Wenn dein Beitrag viele optionalen Details benötigt, die überwältigend sein könnten, wenn man sie alle auf einmal liest.
 
-          [details=Select this to see how it works!]
-          1. Select the <img src="/images/font-awesome-gear.png" width="16" height="16"> gear in the editor.
-          2. Select "Hide Details".
-          3. Edit the details summary and add your content.
+          [details=Wähle dies aus, um zu sehen, wie es funktioniert!]
+          1. Wähle das <img src="/images/font-awesome-gear.png" width="16" height="16"> Zahnrad im Editor.
+          2. Wähle „Details ausblenden“.
+          3. Bearbeite die Zusammenfassung der Details und deinen Inhalt.
           [/details]
 
-          Can you use the <img src="/images/font-awesome-gear.png" width="16" height="16"> gear in the editor to add a details section to your next reply?
+          Kannst du das <img src="/images/font-awesome-gear.png" width="16" height="16"> Zahnrad im Editor benutzen und einen Details-Abschnitt in deiner nächsten Antwort einfügen?
         not_found: |-
-          Having trouble creating a details widget? Try including the following in your next reply:
+          Hast du Schwierigkeiten, den Details-Abschnitt zu erstellen? Versuche, folgendes in deine nächste Antwort aufzunehmen:
 
-              [details=Select me for details]
-              Here are the details
+              [details=Wähle mich aus für Details]
+              Hier sind die Details
               [/details]
         reply: |-
-          Great work — your attention to _detail_ is admirable!
+          Großartige Arbeit — deine Aufmerksamkeit für’s _Detail_ ist bewundernswert!
       end:
         message: |-
-          You blazed through this like an _advanced user_ indeed :bow:
+          Du hast dir in der Tat den Weg hierdurch gebahnt wie ein _fortgeschrittener Benutzer_ :bow:
 
           %{certificate}
 
-          That’s all I have for you.
+          Das ist alles, was ich für dich habe.
 
-          Bye for now! If you’d like to speak with me again, send me a message any time :sunglasses:
+          Tschüss für den Moment! Wenn du wieder mit mir sprechen möchtest, schicke mir jederzeit eine Nachricht :sunglasses:
       certificate:
-        alt: 'Advanced User Track Certificate of Achievement'
+        alt: 'Urkunde für fortgeschrittene Benutzer'
