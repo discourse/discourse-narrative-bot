@@ -22,7 +22,7 @@ de:
     track_selector:
       random_mention:
         dice: |-
-          :game_die: dice roll: %{results}
+          :game_die: Würfel rollen: %{results}
         quote: |-
           > :left_speech_bubble: _%{quote}_ &mdash; %{author}
         tracks: |-
@@ -32,10 +32,10 @@ de:
           > Startet eine der folgenden interaktiven Erzählungen: %{tracks}.
         bot_actions: |-
           `@%{discobot_username} roll 2d6`
-          > :game_die: dice roll: 3, 6
+          > :game_die: Würfel werfen: 3, 6
 
           `@%{discobot_username} quote`
-          > :left_speech_bubble: _Carry out a random act of kindness, with no expectation of reward, safe in the knowledge that one day someone might do the same for you_ &mdash; Princess Diana
+          > :left_speech_bubble: _Führe eine zufällige Handlung der Güte aus, ohne Erwartung einer Belohnung, sicher im Wissen, dass eines Tages jemand das gleiche für dich tun könnte._ &mdash; Princess Diana
 
       do_not_understand:
         first_response: |-
