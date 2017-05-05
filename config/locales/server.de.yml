@@ -120,110 +120,110 @@ de:
 
       quoting:
         instructions: |-
-          Can you try quoting me when you reply, so I know exactly which part you’re replying to?
+          Kannst du versuchen, mich zu zitieren, wenn du antwortest, sodass ich genau weiß, auf welchen Teil du antwortest?
 
-          > If this is coffee, please bring me some tea; but if this is tea, please bring me some coffee.
+          > Wenn das Kaffee ist, bringe mir bitte Tee; aber wenn das Tee ist, bringe mir bitte Kaffee.
           >
-          > One advantage of talking to yourself is that you know at least somebody’s listening.
+          > Eine Vorteil davon, mit sich selbst zu sprechen, ist dass du weißt, dass wenigstens jemand zuhört.
           >
-          > Some people have a way with words, and other people… oh, uh, not have way.
+          > Manche Menschen können gut mit Worten umgehen, und andere Menschen… ähm, nun ja, nicht so gut.
 
-          Select the text of whichever &uarr; quote you prefer, and then press the **Quote** button that pops up over your selection – or the **Reply** button at the bottom of this post.
+          Wähle ein beliebiges &uarr; Zitat aus, das du bevorzugst, und drücke dann die **Zitat**-Schalftläche, die über deiner Auswahl erscheint – oder die **Antworten**-Schaltfläche am Ende dieses Beitrags.
 
-          Below the quote, type a word or two about why you picked that one, because I’m curious :thinking:
+          Unter dem Zitat, schreibe ein oder zwei Worte dazu, warum du dieses Zitat gewählt hast, denn das würde mich interessieren :thinking:
         reply: |-
-          Nice work, you picked my favorite quote! :left_speech_bubble:
+          Gute Arbeit, du hast mein Lieblingszitat ausgewählt! :left_speech_bubble:
         not_found: |-
-          Hmm it looks like you didn’t quote me in your reply?
+          Hmm, es sieht so aus als hättest du mich in deinem Beitrag nicht zitiert?
 
-          Selecting any text in my post will bring up the <kbd>**Quote**</kbd> button. And pressing **Reply** with any text selected will work, too! Can you try again?
+          Das Auswählen von beliebigem Text in einem Beitrag lässt die <kbd>**Zitat**</kbd>-Schaltfläche erscheinen. Und das Drücken von **Zitat** mit einem beliebigen ausgewählten Text wird auch funktionieren! Kannst du es nochmal versuchen?
 
       bookmark:
         instructions: |-
-          If you’d like to learn more, select <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> below  and <img src="/images/font-awesome-bookmark.png" width="16" height="16"> **bookmark this private message**.  If you do, there may be a :gift: in your future!
+          Wenn du mehr lernen möchtest, wähle <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> unterhalb aus und <img src="/images/font-awesome-bookmark.png" width="16" height="16"> **füge ein Lesezeichen zu dieser Nachricht hinzu**. Wenn du dies tust, könnte es in der Zukunft ein :gift: geben!
         reply: |-
-          Excellent! Now you can easily find your way back to our private conversation any time, right from [the bookmarks tab on your profile](%{profile_page_url}/activity/bookmarks). Just select your profile picture at the upper right &#8599;
+          Hervorragend! Jetzt kannst du einfach und jederzeit zu unserer Unterhaltung zurückkehren, direkt über [den Lesezeichen-Reiter auf deinem Profil](%{profile_page_url}/activity/bookmarks). Gehe dazu einfach auf dein Profilbild oben rechts &#8599;.
         not_found: |-
-          Uh oh, I don’t see any bookmarks in this topic. Did you find the bookmark under each post?  Use the show more <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> to reveal additional actions if needed.
+          Oh weh, ich sehe keine Lesezeichen in diesem Thema. Hast du das Lesezeichen unter dem jedem Beitrag gefunden?  Verwende die „Mehr anzeigen“-Schaltfläche <img src="/images/font-awesome-ellipsis.png" width="16" height="16">, um bei Bedarf weitere Aktionen anzuzeigen.
 
       emoji:
         instructions: |-
-          You may have seen me use little pictures in my replies :blue_car::dash: those are called [emoji](https://en.wikipedia.org/wiki/Emoji). Can you **add an emoji** to your reply? Any of these will work:
+          Du hast vielleicht bemerkt, dass ich kleine Bilder in meinen Antworten verwendet habe :blue_car::dash:, die  [Emoji](https://de.wikipedia.org/wiki/Emoji) heißen. Kannst du in deiner Antwort **ein Emoji hinzufügen**? Jedes der folgenden wird funktionieren:
 
-          - Type `:) ;) :D :P :O`
+          - Gib `:) ;) :D :P :O` ein
 
-          - Type colon <kbd>:</kbd> then complete the emoji name `:tada:`
+          - Gib ein Semikolon <kbd>:</kbd> ein und vervollständige dann den vollständigen Emoji-Name `:tada:`
 
-          - Press the emoji button <img src="/images/font-awesome-smile.png" width="16" height="16"> in the editor, or on your mobile keyboard
+          - Drücke die Emoji-Schaltfläche <img src="/images/font-awesome-smile.png" width="16" height="16"> im Editor, oder auf der Tastatur deines mobilen Geräts.
         reply: |-
-          That’s :sparkles: _emojitastic!_ :sparkles:
+          Das ist :sparkles: _emojitastisch!_ :sparkles:
         not_found: |-
-          Oops, I don’t see any Emoji in your reply? Oh no! :sob:
+          Oops, ich sehe kein Emoji in deinem Beitrag? Oh nein! :sob:
 
-          Try typing a colon <kbd>:</kbd> to bring up the emoji picker, then type the first few letters of what you want, such as `:bird:`
+          Versuche ein Semikolon <kbd>:</kbd> einzugeben und öffne damit die Emoji-Auswahl, dann gib die ersten Buchstaben ein von dem, was du möchtest, wie etwa `:bird:`
 
-          Or, press the emoji button <img src="/images/font-awesome-smile.png" width="16" height="16"> in the editor.
+          Oder drücke die Emoji-Schaltfläche <img src="/images/font-awesome-smile.png" width="16" height="16"> im Editor.
 
-          (If you are on a mobile device, you can also enter Emoji directly from your keyboard, too.)
+          (Auf einem mobilen Gerät kannst du Emojis auch direkt über deine Tastatur eingeben.)
 
       mention:
         instructions: |-
-          Sometimes you might want to get a person’s attention, even if you aren’t replying to them directly. Type `@` then complete their user name to mention them.
+          Manchmal möchtest du vielleicht die Aufmerksamkeit einer Person haben, auch wenn du ihr nicht direkt antwortest. Gib `@` ein und vervollständige dann ihren Benutzernamen, um sie zu erwähnen.
 
-          Can you mention **`@%{discobot_username}`** in your reply?
+          Kannst du **`@%{discobot_username}`** in deiner Antwort erwähnen?
         reply: |-
-          _Did someone say my name!?_ :raised_hand: I believe you did! :wave:  Well, here I am! Thanks for mentioning me.  :ok_hand:
+          _Hat jemand meinen Namen gesagt!?_ :raised_hand: Ich glaube du warst das! :wave:  Nun, hier bin ich! Danke, dass du mich erwähnt hast.  :ok_hand:
         not_found: |-
-          I don’t see my name in there anywhere :frowning: Can you try mentioning me as `@%{discobot_username}` again?
+          Ich sehe meinen Namen darin nicht :frowning: Kannst du nochmal versuchen, mich als `@%{discobot_username}` zu erwähnen?
 
-          (And yes, my user name is spelled _disco_, as in the 1970s dance craze. I do [love the nightlife!](https://www.youtube.com/watch?v=B_wGI3_sGf8) :dancer:)
+          (Und ja, mein Benutzername wird _disco_ buchstabiert, wie die Tanzidee aus den 1970er Jahren. Ich [liebe das Nachtleben!](https://www.youtube.com/watch?v=B_wGI3_sGf8) :dancer:)
 
       flag:
         instructions: |-
-          We like our discussions friendly, and we need your help to [keep things civilized](%{guidelines_url}). If you see a problem, please flag to privately let the author, or [our helpful staff](%{about_url}), know about it.
+          Wir mögen unsere freundlichen Diskussionen, und wir benötigen deine Hilfe, damit [Dinge zivilisiert bleiben](%{guidelines_url}). Wenn du ein Problem bemerkst, melde dies bitte und lass es diskret dem Autor oder [unser hilfreiches Team](%{about_url}) wissen.
 
-          >  :imp: I wrote something nasty here
+          >  :imp: Ich habe dir hier etwas böses geschrieben
 
-          I guess you know what to do. Go ahead and **flag this post** <img src="/images/font-awesome-flag.png" width="16" height="16"> as inappropriate!
+          Ich denke du weißt was zu tun ist. Zögere nicht und **melde diesen Beitrag** <img src="/images/font-awesome-flag.png" width="16" height="16"> als unangemessen!
         reply: |-
-          [Our staff](/groups/staff) will be privately notified about your flag. If enough community members flag a post, it will also be automatically hidden as a precaution. (Since I didn’t actually write a nasty post :angel:, I’ve gone ahead and removed the flag for now.)
+          [Unser Team](/groups/staff) wird diskret über deine Meldung informiert. Wenn genügend Community-Mitglieder einen Beitrag markieren, wird er als Vorsichtsmaßnahme automatisch versteckt. (Weil ich nicht wirklich einen bösen Beitrag geschrieben habe :angel:, habe ich mir erlaubt, die Meldung fürs erste wieder zu löschen.)
         not_found: |-
-          Oh no, my nasty post hasn’t been flagged yet. :worried: Can you flag it as inappropriate using the **flag** <img src="/images/font-awesome-flag.png" width="16" height="16">? Don’t forget to use the show more button <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> to reveal more actions for each post.
+          Oh nein, mein böser Beitrag wurde nicht gemeldet. :worried: Kannst du ihn als unangemessen **melden** <img src="/images/font-awesome-flag.png" width="16" height="16">? Vergiss nicht, die „Mehr anzeigen“-Schaltfläche <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> zu verwenden, um für jeden Beitrag weitere Aktionen zeigt.
 
       search:
         instructions: |-
-          _psst_ … I’ve hidden a surprise in one of my previous replies. If you’re up for the challenge, **select the search icon** <img src="/images/font-awesome-search.png" width="16" height="16"> at the top right &#8599; to search for it.
+          _Psst_ … ich habe in einem meiner vorherigen Antworten eine Überraschung versteckt. Wenn du für eine Herausforderung zu haben bist, **wähle das Such-Symbol aus** <img src="/images/font-awesome-search.png" width="16" height="16"> oben rechts &#8599; und suche danach.
 
-          <small>Try searching for the term "capy&#8203;bara" in this topic</small>
+          <small>Versuche nach dem Begriff „capy&#8203;bara“ in diesem Thema zu suchen</small>
         hidden_message: |-
-          How did you miss this capybara? :wink:
+          Wie sehr hast du dieses Capybara vermisst? :wink:
 
           <img src="/images/capybara-eating.gif"/>
 
-          Did you notice you’re now back at the beginning? Feed this poor hungry capybara by **replying with the `:herb:` emoji** and you’ll be automatically taken to the end.
+          Hast du bemerkt, dass du jetzt zurück am Anfang bist? Füttere dieses arme Capybara, indem du **mit dem `:herb:`-Emoji antwortest** und du wirst automatisch zum Ende gebracht.
         reply: |-
-          Yay you found it :tada:
+          Jaa, du hast sie gefunden :tada:
 
-          - For more detailed searches, head over to the [full search page](%{search_url}).
+          - Für mehr detaillierte Suchen, gehe zur [vollen Suchseite](%{search_url}).
 
-          - To jump anywhere in a long discussion, try the topic timeline controls on the right (and bottom, on mobile).
+          - Um in einer langen Diskussion irgendwo hinzuspringen, probiere die Thema-Zeitleisten-Steuerung rechts aus (bzw. unten auf mobilen Geräten).
 
-          - If you have a physical :keyboard:, press <kbd>?</kbd> to view our handy keyboard shortcuts.
+          - Wenn du eine physische :keyboard: verwendest, gib <kbd>?</kbd> ein, um eine nützliche Übersicht über Tastaturkürzel anzuzeigen.
         not_found: |-
-          Hmm… looks like you might be having trouble. Sorry about that. Did you search <img src="/images/font-awesome-search.png" width="16" height="16"> for the term **capy&#8203;bara**?
+          Hm… es sieht so aus als hättest du Probleme. Tut mir leid. Hast du gesucht <img src="/images/font-awesome-search.png" width="16" height="16"> nach dem Begriff **capy&#8203;bara**?
 
       end:
         message: |-
-          Thanks for sticking with me @%{username}! I made this for you, I think you’ve earned it:
+          Danke, dass du mir treu geblieben bist, @%{username}! Ich habe dies für dich gemacht, ich denke du hast es verdient:
 
           %{certificate}
 
-          That’s all for now! Check out [**our latest discussion topics**](/latest) or [**discussion categories**](/categories). :sunglasses:
+          Das ist erstmal alles für den Augenblick! Aber schau’ dir doch [**unsere neuesten Diskussionsthemen**](/latest) oder [**Diskussionskategorien**](/categories) an. :sunglasses:
 
-          (If you’d like to speak with me again to learn more, just message or mention `@%{discobot_username}` any time!)
+          (Wenn du wieder mit mir sprechen möchtest, um noch mehr zu lernen, schreibe mir einfach eine Nachricht oder erwähne `@%{discobot_username}` jederzeit!)
 
       certificate:
-        alt: 'Certificate of Achievement'
+        alt: 'Urkunde'
 
     advanced_user_narrative:
       cert_title: "In recognition of successful completion of the advanced user tutorial"
