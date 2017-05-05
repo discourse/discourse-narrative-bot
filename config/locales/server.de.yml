@@ -9,15 +9,15 @@ de:
 
     timeout:
       message: |-
-        Hey @%{username}, just checking in because I haven’t heard from you in a while.
+        Hey @%{username}, wollte nur einmal nachfragen, weil ich schon länger nicht von dir gehört habe.
 
-        - To continue, reply to me any time.
+        - Um fortzusetzen, antworte mir jederzeit.
 
-        - If you’d like to skip this step, say `%{skip_trigger}`.
+        - Wenn du diesen Schritt überspringen möchtest, sage `%{skip_trigger}`.
 
-        - To start over, say `%{reset_trigger}`.
+        - Um von vorne zu beginnnen, sage `%{reset_trigger}`.
 
-        If you’d rather not, that’s OK too. I’m a robot. You won’t hurt my feelings. :sob:
+        Wenn du lieber nicht möchtest, ist das auch okay. Ich bin ein Roboter. Du wirst meine Gefühle nicht verletzen. :sob:
 
     track_selector:
       random_mention:
@@ -26,10 +26,10 @@ de:
         quote: |-
           > :left_speech_bubble: _%{quote}_ &mdash; %{author}
         tracks: |-
-          Hi! I currently know how to do the following things:
+          Hi! Ich kann aktuell die folgenden Dinge tun:
 
           `@%{discobot_username} %{reset_trigger} %{default_track}`
-          > Starts one of the following interactive narratives: %{tracks}.
+          > Startet eine der folgenden interaktiven Erzählungen: %{tracks}.
         bot_actions: |-
           `@%{discobot_username} roll 2d6`
           > :game_die: dice roll: 3, 6
@@ -39,84 +39,84 @@ de:
 
       do_not_understand:
         first_response: |-
-          Hey, thanks for the reply!
+          Hey, danke für die Antwort!
 
-          Unfortunately, as a poorly programmed bot, I can’t quite understand that one. :frowning:
+          Leider, weil ich ein schlecht programmierter Bot bin, habe ich das nicht so ganz verstanden. :frowning:
         track_response:
-          You can try again, or if you’d like to skip this step, say `%{skip_trigger}`. Otherwise, to start over, say `%{reset_trigger}`.
+          Du kannst es nochmal versuchen, oder wenn du diesen Schritt überspringen möchtest, sage `%{skip_trigger}`. Oder, wenn du von vorne beginnen möchtest, sage `%{reset_trigger}`.
         second_response: |-
-          Aw, sorry. I’m still not getting it. :anguished:
+          Oh, sorry. Ich kapiere es immer noch nicht. :anguished:
 
-          It’s not you – it’s me. I blame my programmers! They’re terrible!
+          Es liegt nicht an dir – sondern an mir. I gebe meinen Programmierern die Schuld! Sie sind schrecklich!
 
-          Perhaps let’s start over? Say `%{reset_trigger}` to start over. In the meantime, I’ll stay out of your way.
+          Lass’ uns vielleicht neu beginnen? Sage `%{reset_trigger}` um von vorne zu beginnen. In der Zwischenzeit lasse ich dich erstmal in Ruhe.
 
     new_user_narrative:
-      cert_title: "In recognition of successful completion of the new user tutorial"
+      cert_title: "In Anerkennung deines erfolgreichen Abschlusses eines Tutorials für neue Benutzer"
 
       hello:
-        title: ":robot: Greetings!"
+        title: ":robot: Grüße!"
         message: |-
-          Thanks for joining %{title}, and welcome!
+          Danke, dass du %{title} beigetreten bist, und willkommen!
 
-          - I’m only a robot, but [our friendly staff](/about) are also here to help if you need to reach a person.
+          - Ich bin nur ein Roboter, aber [unser freundliches Team](/about) ist auch da um zu helfen, wenn du eine Person erreichen möchtest.
 
-          - For safety reasons, we temporarily limit what new users can do. You’ll gain new abilities (and [badges](/badges)) as we get to know you.
+          - Aus Sicherheitsgründen begrenzen wir vorübergehend, was neue Benutzer tun können. Du wirst neue Fähigkeiten (und [Abzeichen](/badges)) erhalten, während wir uns kennenlernen.
 
-          - We believe in [civilized community behavior](/guidelines) at all times.
+          - Wir glauben an [zivilisertes Community-Verhalten](/guidelines) zu allen Zeiten.
 
       onebox:
         instructions: |-
-          Next, can you share one of these links with me? Reply with **a link on a line by itself**, and it’ll automatically expand to include a nifty summary.
+          Als nächstes, kannst du einen dieser Links mit mir teilen? Antworte mit **einem Link auf einer eigenen Zeile**, und er wird automatisch in eine hübsche Zusammenfassung erweitert..
 
-          To copy a link, tap and hold on mobile, or right click your mouse:
+          Um einen Link zu kopieren, tippe und halte auf mobilen Geräten, oder klicke rechts mit deiner Maus:
 
           - https://en.wikipedia.org/wiki/Inherently_funny_word
           - https://en.wikipedia.org/wiki/Death_by_coconut
           - https://en.wikipedia.org/wiki/Calculator_spelling
         reply: |-
-          Cool! This will work for most <img src="/images/font-awesome-link.png" width="16" height="16"> links. Remember, it must be on a line _all by itself_, with nothing else in front, or behind.
+          Cool! Dies wird für die meisten <img src="/images/font-awesome-link.png" width="16" height="16"> Links funktionieren. Denke immer daran, dass der Link auf einer Linie _ganz allein_ stehen muss, ohne etwas davor oder dahinter.
         not_found: |-
-          Sorry, I couldn’t find the link in your reply! :cry:
+          Entschuldige bitte, ich konnte keinen Link in deiner Antwort finden! :cry:
 
-          Can you try adding the following link, on its own line, in your next reply?
+          Kannst du versuchen, den folgenden Link auf einer eigenen Zeile in deine nächste Antwort einzufügen?
 
           - https://en.wikipedia.org/wiki/Exotic_Shorthair
 
       images:
         instructions: |-
-          Here’s a picture of a unicorn:
+          Hier ist ein Bild von einem Einhorn:
 
           <img src="/images/unicorn.jpg" width="520" height="381">
 
-          If you like it (and who wouldn’t!) go ahead and press the like :heart: button below this post to let me know.
+          Wenn du es magst (und wer tut das nicht!), leg’ los und drücke die :heart: Like-Schaltfläche unter diesem Beitrag, um es mich wissen zu lassen.
 
-          Can you **reply with a picture?** Any picture will do! Drag and drop, press the upload button, or even copy and paste it in.
+          Kannst du **mit einem Bild antworten?** Egal welches Bild! Ziehe das Bild und lege es ab, drücke die Upload-Schaltfläche, oder kopiere es und füge es ein.
         reply: |-
-          Nifty picture – I pressed the like :heart: button to let you know how much I appreciated it :heart_eyes:
+          Hübsches Bild – ich habe die :heart: Like-Schaltfläche gedrückt, um dich wissen zu lassen, wie sehr ich es schätze :heart_eyes:
         like_not_found: |-
-          Did you forget to like :heart: my [post?](%{url}) :crying_cat_face:
+          Hast du vergessen meinen [Beitrag](%{url}) mit einem :heart: Like zu markieren? :crying_cat_face:
         not_found: |-
-          Looks like you didn’t upload an image so I’ve choosen a picture that I’m _sure_ you will enjoy.
+          Sieht so aus als hättest du kein Bild hochgeladen, also habe ich ein Bild ausgesucht, von dem ich _sicher_ bin, dass es dir gefällt.
 
           `%{image_url}`
 
-          Try uploading that one next, or pasting the link in on a line by itself!
+          Versuche dieses als nächstes hochzuladen, oder füge den Link auf einer eigenen Zeile ein!
 
       formatting:
         instructions: |-
-          Can you make some words **bold** or _italic_ in your reply?
+          Kannst du einige Wörter in deiner Antwort **fett** oder _kursiv_ markieren?
 
-          - type `**bold**` or `_italic_`
+          - schreibe `**fett**` oder `_kursiv_`
 
-          - or, push the <kbd><b>B</b></kbd> or <kbd><i>I</i></kbd> buttons in the editor
+          - oder, drücke die <kbd><b>F</b></kbd>- oder <kbd><i>K</i></kbd>-Schaltflächen im Editor
 
         reply: |-
-          Great job! HTML and BBCode also work for formatting – to learn more, [try this tutorial](http://commonmark.org/help) :nerd:
+          Großartige Leistung! HTML und BBCode funktionieren auch zur Formatierung – um mehr zu erfahren, [probiere dieses Tutorial aus](http://commonmark.org/help) :nerd:
         not_found: |-
-          Aww, I didn’t find any formatting in your reply. :pencil2:
+          Ohh, ich habe keine Formatierung in deiner Antwort gefunden. :pencil2:
 
-          Can you try again? Use the <kbd><b>B</b></kbd> bold or <kbd><i>I</i></kbd> italic buttons in the editor if you get stuck.
+          Kannst du es nochmal versuchen? Verwende die <kbd><b>F</b></kbd>- (Fett) oder <kbd><i>K</i></kbd>-Schaltfläche (Kursiv) im Editor, wenn du stecken bleibst.
 
       quoting:
         instructions: |-
