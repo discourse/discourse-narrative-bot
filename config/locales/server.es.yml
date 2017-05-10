@@ -20,6 +20,8 @@ es:
         Si prefieres no continuar, está OK también! Soy un robot. No herirás mis sentimientos. :sob:
         
     dice:
+      invalid: |-
+        Lo siento, es matemáticamente imposible lanzar esa combinación de dados que has solicitado.
       not_enough_dice: |-
         Solo tengo %{num_of_dice} dados para jugar. Es vergonsozo lo sé!
       out_of_range: |-
