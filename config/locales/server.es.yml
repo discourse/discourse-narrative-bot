@@ -37,7 +37,7 @@ es:
         author: "Mahatma Gandhi"
       "3":
         quote: "Don’t cry because it’s over, smile because it happened."
-        author: "Dr Suess"
+        author: "Dr Seuss"
       "4":
         quote: "If you want something done right, do it yourself."
         author: "Charles-Guillaume Étienne"
@@ -55,7 +55,7 @@ es:
         author: "Eleanor Roosevelt"
       "9":
         quote: "Mistakes are always forgivable, if one has the courage to admit them."
-        author:
+        author: "Bruce Lee"
       "10":
         quote: 'Whatever the mind of man can conceive and believe, it can achieve.'
         author: 'Napoleon Hill'
