@@ -104,7 +104,7 @@ en:
           > :left_speech_bubble: _Carry out a random act of kindness, with no expectation of reward, safe in the knowledge that one day someone might do the same for you_ &mdash; Princess Diana
 
           `@%{discobot_username} fortune`
-          %{magic_8_ball_reply}
+          > :crystal_ball: My sources say no
 
       do_not_understand:
         first_response: |-
@@ -289,7 +289,7 @@ en:
 
           That’s all for now! Check out [**our latest discussion topics**](/latest) or [**discussion categories**](/categories). :sunglasses:
 
-          (If you’d like to speak with me again to learn more, just message or mention `@%{discobot_username}` any time!)
+          (If you’d like to speak with me again to learn more, just message `@%{discobot_username} help` any time!)
 
       certificate:
         alt: 'Certificate of Achievement'
@@ -299,7 +299,7 @@ en:
       title: ':arrow_up: Advanced user features'
       start_message: |-
         As an _advanced_ user, have you visited [your preferences page](/my/preferences) yet @%{username}? There are lots of ways to customize your experience, such as selecting a dark or light theme.
-        
+
         But I digress, let’s begin!
 
       edit:
