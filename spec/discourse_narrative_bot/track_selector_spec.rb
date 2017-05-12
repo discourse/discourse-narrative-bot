@@ -19,7 +19,7 @@ describe DiscourseNarrativeBot::TrackSelector do
 
     #{I18n.t(
       'discourse_narrative_bot.track_selector.random_mention.bot_actions',
-      discobot_username: discobot_username,
+      discobot_username: discobot_username
     )}
     RAW
 
@@ -207,9 +207,9 @@ describe DiscourseNarrativeBot::TrackSelector do
           end
         end
 
-        context 'when discobot is mentioned at the end of a track' do
+        context 'when discobot is asked for help' do
           it 'should create the right reply' do
-            post.update!(raw: 'Show me what you can do @discobot')
+            post.update!(raw: '@discobot help')
             described_class.new(:reply, user, post_id: post.id).select
             new_post = Post.last
 
@@ -219,7 +219,7 @@ describe DiscourseNarrativeBot::TrackSelector do
           context 'when user is an admin or moderator' do
             it 'should include the commands to start the advanced user track' do
               user.update!(moderator: true)
-              post.update!(raw: 'Show me what you can do @discobot')
+              post.update!(raw: '@discobot help')
               described_class.new(:reply, user, post_id: post.id).select
               new_post = Post.last
 
@@ -311,7 +311,7 @@ describe DiscourseNarrativeBot::TrackSelector do
                 user
               )
 
-              post.update!(raw: 'Show me what you can do @discobot')
+              post.update!(raw: '@discobot help')
               described_class.new(:reply, user, post_id: post.id).select
               new_post = Post.last
 
@@ -322,43 +322,27 @@ describe DiscourseNarrativeBot::TrackSelector do
           end
         end
       end
-
-      context 'when in a normal PM with discobot' do
-        describe 'when discobot is replied to' do
-          it 'should create the right reply' do
-            SiteSetting.discourse_narrative_bot_disable_public_replies = true
-            post.update!(raw: 'Show me what you can do @discobot')
-            described_class.new(:reply, user, post_id: post.id).select
-            new_post = Post.last
-
-            expect(new_post.raw).to eq(random_mention_reply)
-          end
-
-          it 'should not rate limit help message' do
-            post.update!(raw: '@discobot')
-            other_post = Fabricate(:post, raw: 'discobot', topic: post.topic)
-
-            [post, other_post].each do |reply|
-              described_class.new(:reply, user, post_id: reply.id).select
-              expect(Post.last.raw).to eq(random_mention_reply)
-            end
-          end
-        end
-      end
     end
 
     context 'random discobot mentions' do
       let(:topic) { Fabricate(:topic) }
       let(:post) { Fabricate(:post, topic: topic, user: user) }
 
-      describe 'when discobot public replies are disabled' do
-        before do
-          SiteSetting.discourse_narrative_bot_disable_public_replies = true
+      describe 'when discobot is asked for help' do
+        it 'should create the right reply' do
+          post.update!(raw: '@discobot help')
+          described_class.new(:reply, user, post_id: post.id).select
+          new_post = Post.last
+          expect(new_post.raw).to eq(random_mention_reply)
         end
 
-        describe 'when discobot is mentioned' do
+        describe 'when discobot public replies are disabled' do
+          before do
+            SiteSetting.discourse_narrative_bot_disable_public_replies = true
+          end
+
           it 'should not reply' do
-            post.update!(raw: 'Show me what you can do @discobot')
+            post.update!(raw: '@discobot help')
 
             expect do
               described_class.new(:reply, user, post_id: post.id).select
@@ -367,177 +351,104 @@ describe DiscourseNarrativeBot::TrackSelector do
         end
       end
 
-      describe 'when discobot is mentioned' do
+      describe 'when discobot is asked to roll dice' do
         it 'should create the right reply' do
-          post.update!(raw: 'Show me what you can do @discobot')
+          post.update!(raw: '@discobot roll 2d1')
           described_class.new(:reply, user, post_id: post.id).select
           new_post = Post.last
-          expect(new_post.raw).to eq(random_mention_reply)
+
+          expect(new_post.raw).to eq(
+            I18n.t("discourse_narrative_bot.dice.results",
+            results: '1, 1'
+          ))
         end
 
-        describe 'rate limiting help message in public topic' do
-          let(:topic) { Fabricate(:topic) }
-          let(:other_post) { Fabricate(:post, raw: '@discobot show me something', topic: topic) }
-          let(:post) { Fabricate(:post, topic: topic) }
-
-          after do
-            $redis.flushall
-          end
-
-          describe 'when help massage has been displayed in the last 6 hours' do
-            it 'should not do anything' do
-              $redis.set(
-                "#{described_class::PUBLIC_DISPLAY_BOT_HELP_KEY}:#{other_post.topic_id}",
-                post.post_number - 11
-              )
-
-              $redis.class.any_instance.expects(:ttl).returns(19.hours.to_i)
-
-              user
-              post.update!(raw: "Show me what you can do @discobot")
-
-              expect { described_class.new(:reply, user, post_id: post.id).select }
-                .to_not change { Post.count }
-            end
-          end
-
-          describe 'when help message has not been displayed in the last 6 hours' do
-            it 'should create the right reply' do
-              $redis.set(
-                "#{described_class::PUBLIC_DISPLAY_BOT_HELP_KEY}:#{other_post.topic_id}",
-                post.post_number - 11
-              )
-
-              $redis.class.any_instance.expects(:ttl).returns(7.hours.to_i)
-
-              user
-              post.update!(raw: "Show me what you can do @discobot")
-
-              described_class.new(:reply, user, post_id: post.id).select
-
-              expect(Post.last.raw).to eq(random_mention_reply)
-            end
-          end
-
-          describe 'when help message has been displayed in the last 10 replies' do
-            it 'should not do anything' do
-              described_class.new(:reply, user, post_id: other_post.id).select
-              expect(Post.last.raw).to eq(random_mention_reply)
-
-              expect($redis.get(
-                "#{described_class::PUBLIC_DISPLAY_BOT_HELP_KEY}:#{other_post.topic_id}"
-              ).to_i).to eq(other_post.post_number.to_i)
-
-              user
-              post.update!(raw: "Show me what you can do @discobot")
-
-              expect do
-                described_class.new(:reply, user, post_id: post.id).select
-              end.to_not change { Post.count }
-            end
-          end
-        end
-
-        describe 'when discobot is asked to roll dice' do
+        describe 'when dice roll is requested incorrectly' do
           it 'should create the right reply' do
-            post.update!(raw: '@discobot roll 2d1')
+            post.update!(raw: 'roll 2d1 @discobot')
+            expect { described_class.new(:reply, user, post_id: post.id).select }
+              .to_not change { Post.count }
+          end
+        end
+
+        describe 'when roll dice command is present inside a quote' do
+          it 'should ignore the command' do
+            user
+            post.update!(raw: '[quote="Donkey, post:6, topic:1"]@discobot roll 2d1[/quote]')
+
+            expect { described_class.new(:reply, user, post_id: post.id).select }
+              .to_not change { Post.count }
+          end
+        end
+      end
+
+      describe 'when a quote is requested' do
+        it 'should create the right reply' do
+          stub_request(:get, "http://api.forismatic.com/api/1.0/?format=json&lang=en&method=getQuote").
+            to_return(status: 200, body: "{\"quoteText\":\"Be Like Water\",\"quoteAuthor\":\"Bruce Lee\"}")
+
+          ['@discobot quote', 'hello @discobot quote there'].each do |raw|
+            post.update!(raw: raw)
             described_class.new(:reply, user, post_id: post.id).select
             new_post = Post.last
 
             expect(new_post.raw).to eq(
-              I18n.t("discourse_narrative_bot.dice.results",
-              results: '1, 1'
+              I18n.t("discourse_narrative_bot.quote.results",
+              quote: "Be Like Water", author: "Bruce Lee"
             ))
           end
-
-          describe 'when dice roll is requested incorrectly' do
-            it 'should create the right reply' do
-              post.update!(raw: 'roll 2d1 @discobot')
-              described_class.new(:reply, user, post_id: post.id).select
-
-              expect(Post.last.raw).to eq(random_mention_reply)
-            end
-          end
-
-          describe 'when roll dice command is present inside a quote' do
-            it 'should ignore the command' do
-              user
-              post.update!(raw: '[quote="Donkey, post:6, topic:1"]@discobot roll 2d1[/quote]')
-
-              expect { described_class.new(:reply, user, post_id: post.id).select }
-                .to_not change { Post.count }
-            end
-          end
         end
 
-        describe 'when a quote is requested' do
+        describe 'when quote is requested incorrectly' do
           it 'should create the right reply' do
-            stub_request(:get, "http://api.forismatic.com/api/1.0/?format=json&lang=en&method=getQuote").
-              to_return(status: 200, body: "{\"quoteText\":\"Be Like Water\",\"quoteAuthor\":\"Bruce Lee\"}")
+            post.update!(raw: 'quote @discobot')
 
-            ['@discobot quote', 'hello @discobot quote there'].each do |raw|
-              post.update!(raw: raw)
-              described_class.new(:reply, user, post_id: post.id).select
-              new_post = Post.last
-
-              expect(new_post.raw).to eq(
-                I18n.t("discourse_narrative_bot.quote.results",
-                quote: "Be Like Water", author: "Bruce Lee"
-              ))
-            end
-          end
-
-          describe 'when quote is requested incorrectly' do
-            it 'should create the right reply' do
-              post.update!(raw: 'quote @discobot')
-              described_class.new(:reply, user, post_id: post.id).select
-
-              expect(Post.last.raw).to eq(random_mention_reply)
-            end
-          end
-
-          describe 'when quote command is present inside a onebox or quote' do
-            it 'should ignore the command' do
-              user
-              post.update!(raw: '[quote="Donkey, post:6, topic:1"]@discobot quote[/quote]')
-
-              expect { described_class.new(:reply, user, post_id: post.id).select }
-                .to_not change { Post.count }
-            end
-          end
-
-          describe 'when user requesting quote has a preferred locale' do
-            before do
-              SiteSetting.allow_user_locale = true
-              user.update!(locale: 'it')
-              srand(1)
-            end
-
-            it 'should create the right reply' do
-              post.update!(raw: '@discobot quote')
-              described_class.new(:reply, user, post_id: post.id).select
-              key = "discourse_narrative_bot.quote.6"
-
-              expect(Post.last.raw).to eq(I18n.t('discourse_narrative_bot.quote.results',
-                quote: I18n.t("#{key}.quote"), author: I18n.t("#{key}.author")
-              ))
-            end
+            expect { described_class.new(:reply, user, post_id: post.id).select }
+              .to_not change { Post.count }
           end
         end
 
-        describe 'when magic 8 ball is requested' do
+        describe 'when quote command is present inside a onebox or quote' do
+          it 'should ignore the command' do
+            user
+            post.update!(raw: '[quote="Donkey, post:6, topic:1"]@discobot quote[/quote]')
+
+            expect { described_class.new(:reply, user, post_id: post.id).select }
+              .to_not change { Post.count }
+          end
+        end
+
+        describe 'when user requesting quote has a preferred locale' do
           before do
+            SiteSetting.allow_user_locale = true
+            user.update!(locale: 'it')
             srand(1)
           end
 
           it 'should create the right reply' do
-            post.update!(raw: '@discobot fortune')
+            post.update!(raw: '@discobot quote')
             described_class.new(:reply, user, post_id: post.id).select
+            key = "discourse_narrative_bot.quote.6"
 
-            expect(Post.last.raw).to eq(I18n.t('discourse_narrative_bot.magic_8_ball.result',
-              result: I18n.t("discourse_narrative_bot.magic_8_ball.answers.6")
+            expect(Post.last.raw).to eq(I18n.t('discourse_narrative_bot.quote.results',
+              quote: I18n.t("#{key}.quote"), author: I18n.t("#{key}.author")
             ))
           end
+        end
+      end
+
+      describe 'when magic 8 ball is requested' do
+        before do
+          srand(1)
+        end
+
+        it 'should create the right reply' do
+          post.update!(raw: '@discobot fortune')
+          described_class.new(:reply, user, post_id: post.id).select
+
+          expect(Post.last.raw).to eq(I18n.t('discourse_narrative_bot.magic_8_ball.result',
+            result: I18n.t("discourse_narrative_bot.magic_8_ball.answers.6")
+          ))
         end
       end
     end
@@ -574,14 +485,6 @@ describe DiscourseNarrativeBot::TrackSelector do
           other_post
           expect { described_class.new(:like, user, post_id: other_post.id).select }
             .to_not change { Post.count }
-        end
-      end
-
-      describe 'when a new message is made' do
-        it 'should create the right reply' do
-          described_class.new(:reply, user, post_id: other_post.id).select
-
-          expect(Post.last.raw).to eq(random_mention_reply)
         end
       end
 

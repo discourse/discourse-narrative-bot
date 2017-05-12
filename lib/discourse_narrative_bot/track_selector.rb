@@ -12,6 +12,7 @@ module DiscourseNarrativeBot
 
     RESET_TRIGGER = 'start'.freeze
     SKIP_TRIGGER = 'skip'.freeze
+    HELP_TRIGGER = 'help'.freeze
 
     TOPIC_ACTIONS = [
       :delete,
@@ -104,22 +105,8 @@ module DiscourseNarrativeBot
           DiscourseNarrativeBot::QuoteGenerator.generate(@user)
         elsif match_trigger?(post_raw, 'fortune')
           DiscourseNarrativeBot::Magic8Ball.generate_answer
-        elsif display_help
-          if public_reply?
-            key = "#{PUBLIC_DISPLAY_BOT_HELP_KEY}:#{@post.topic_id}"
-            last_bot_help_post_number = $redis.get(key)
-
-            if !last_bot_help_post_number ||
-                (last_bot_help_post_number &&
-                 @post.post_number - 10 > last_bot_help_post_number.to_i &&
-                 (1.day.to_i - $redis.ttl(key)) > 6.hours.to_i)
-
-              $redis.setex(key, 1.day.to_i, @post.post_number)
-              help_message
-            end
-          else
-            help_message
-          end
+        elsif match_trigger?(post_raw, HELP_TRIGGER)
+          help_message
         end
 
       if raw
@@ -147,7 +134,7 @@ module DiscourseNarrativeBot
         tracks: tracks.join(', ')
       )
 
-      message << "\n\n#{I18n.t(i18n_key('random_mention.bot_actions'), discobot_username: discobot_username, magic_8_ball_reply: Magic8Ball.generate_answer)}"
+      message << "\n\n#{I18n.t(i18n_key('random_mention.bot_actions'), discobot_username: discobot_username)}"
     end
 
     def generic_replies_key(user)
