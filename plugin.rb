@@ -34,6 +34,9 @@ after_initialize do
   load File.expand_path("../lib/discourse_narrative_bot/quote_generator.rb", __FILE__)
   load File.expand_path("../lib/discourse_narrative_bot/magic_8_ball.rb", __FILE__)
 
+  # Disable welcome message because that is what the bot is supposed to replace.
+  SiteSetting.send_welcome_message = false
+
   module ::DiscourseNarrativeBot
     PLUGIN_NAME = "discourse-narrative-bot".freeze
 
@@ -204,22 +207,4 @@ after_initialize do
       )
     end
   end
-
-  should_send_welcome_message = SiteSetting.send_welcome_message
-
-  if SiteSetting.discourse_narrative_bot_enabled
-    SiteSetting.send_welcome_message = false
-  end
-
-  DiscourseEvent.on(:site_setting_saved) do |site_setting|
-    if site_setting.name.to_s == 'discourse_narrative_bot_enabled'
-      case site_setting.value
-      when 'f'
-        SiteSetting.send_welcome_message = should_send_welcome_message
-      when 't'
-        SiteSetting.send_welcome_message = false
-      end
-    end
-  end
-
 end
