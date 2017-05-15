@@ -128,7 +128,7 @@ es:
         first_response: |-
           Hey, gracias por tu respuesta!
           Lamentablemente, como un robot con programación muy pobre, no he podido entender lo que me has dicho. :frowning:
-        track_response: Puedes intentarlo de nuevo, o bien saltar este paso, dime `%{skip_trigger}`. O también, para empezar de nuevo, dime `%{reset_trigger}`.
+        track_response: Puedes intentarlo de nuevo, o bien para saltar este paso, dime `%{skip_trigger}`. Para empezar de nuevo, dime `%{reset_trigger}`.
         second_response: |-
           Aw, lo siento. Sigo sin entenderlo. :anguished:
 
@@ -144,6 +144,7 @@ es:
         title: ":robot: Saludos!"
         message: |-
           Gracias por unirte a %{title}, y bienvenido!
+
           - Soy solo un robot, pero [nuestro amigable staff](/about) está también aquí para ayudar si necesitas contactar a una persona.
 
           - Por razones de seguridad, nosotros temporalmente limitamos lo que los nuevos usuarios pueden hacer. Tú podrás ganar nuevas habilidades (y [distintivos](/badges)) cuando te vayamos conociendo.
