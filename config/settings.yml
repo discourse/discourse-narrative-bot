@@ -2,8 +2,11 @@ plugins:
   discourse_narrative_bot_enabled:
     default: true
     client: true
-  disable_discourse_narrative_bot_welcome_post:
+  discourse_narrative_bot_start_new_user_track_on_signup:
+    default: true
+  discourse_narrative_bot_send_welcome_message:
     default: false
+    validator: "DiscourseNarrativeBotSendWelcomeMessageSettingValidator"
   discourse_narrative_bot_ignored_usernames:
     default: 'discourse'
     type: list

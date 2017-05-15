@@ -1,7 +1,8 @@
 en:
   site_settings:
     discourse_narrative_bot_enabled: 'Enable Discourse Narrative Bot'
-    disable_discourse_narrative_bot_welcome_post: "Disable the welcome post by Discourse Narrative Bot"
+    discourse_narrative_bot_start_new_user_track_on_signup: "Starts the new user track automatically for new users."
+    discourse_narrative_bot_send_welcome_message: "Send all new users a welcome message with a quick start guide. "
     discourse_narrative_bot_ignored_usernames: "Usernames that the Discourse Narrative Bot should ignore"
     discourse_narrative_bot_disable_public_replies: "Disable public replies by Discourse Narrative Bot"
 

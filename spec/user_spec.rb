@@ -15,26 +15,42 @@ describe User do
       expect(Post.last.raw).to include(expected_raw.chomp)
     end
 
-    context 'when welcome post is disabled' do
-      before do
-        SiteSetting.disable_discourse_narrative_bot_welcome_post = true
-      end
-
-      it 'should not initiate the bot' do
-        expect { user }.to_not change { Post.count }
-      end
-
-      describe "when send welcome message is enabled" do
+    describe 'welcome post' do
+      context 'disabled' do
         before do
-          SiteSetting.send_welcome_message = true
+          SiteSetting.discourse_narrative_bot_start_new_user_track_on_signup = false
         end
 
-        it 'should send the right welcome message' do
+        it 'should not initiate the bot' do
+          expect { user }.to_not change { Post.count }
+        end
+
+        describe "when send welcome message is enabled" do
+          before do
+            SiteSetting.discourse_narrative_bot_send_welcome_message = true
+          end
+
+          it 'should send the right welcome message' do
+            expect { user }.to change { Topic.count }.by(1)
+
+            expect(Topic.last.title).to eq(I18n.t(
+              "system_messages.welcome_user.subject_template",
+              site_name: SiteSetting.title
+            ))
+          end
+        end
+      end
+
+      describe 'enabled' do
+        before do
+          SiteSetting.discourse_narrative_bot_start_new_user_track_on_signup = true
+        end
+
+        it 'initiate the bot' do
           expect { user }.to change { Topic.count }.by(1)
 
           expect(Topic.last.title).to eq(I18n.t(
-            "system_messages.welcome_user.subject_template",
-            site_name: SiteSetting.title
+            'discourse_narrative_bot.new_user_narrative.hello.title'
           ))
         end
       end
@@ -69,20 +85,6 @@ describe User do
         it 'should not initiate the bot' do
           expect { user.update!(username: username) }.to_not change { Post.count }
         end
-      end
-    end
-
-    describe 'when welcome post is not disabled' do
-      before do
-        SiteSetting.disable_discourse_narrative_bot_welcome_post = false
-      end
-
-      it 'initiate the bot' do
-        expect { user }.to change { Topic.count }.by(1)
-
-        expect(Topic.last.title).to eq(I18n.t(
-          'discourse_narrative_bot.new_user_narrative.hello.title'
-        ))
       end
     end
   end

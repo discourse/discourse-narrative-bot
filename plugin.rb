@@ -108,20 +108,11 @@ after_initialize do
     DiscourseNarrativeBot::Store.remove(self.id)
   end
 
-  self.add_model_callback(User, :after_commit, on: :create) do
-    if !SiteSetting.disable_discourse_narrative_bot_welcome_post && enqueue_narrative_bot_job?
-      Jobs.enqueue(:narrative_init,
-        user_id: self.id,
-        klass: DiscourseNarrativeBot::NewUserNarrative.to_s
-      )
-    elsif SiteSetting.send_welcome_message
-      Jobs.enqueue(:send_default_welcome_message, user_id: self.id)
-    end
-  end
-
   require_dependency "user"
 
   User.class_eval do
+    after_commit :send_bot_new_user_message, on: :create
+
     def enqueue_narrative_bot_job?
       SiteSetting.discourse_narrative_bot_enabled &&
         self.id > 0 &&
@@ -130,6 +121,19 @@ after_initialize do
         !self.staged &&
         !SiteSetting.discourse_narrative_bot_ignored_usernames.split('|'.freeze).include?(self.username)
     end
+
+    private
+
+      def send_bot_new_user_message
+        if SiteSetting.discourse_narrative_bot_start_new_user_track_on_signup && enqueue_narrative_bot_job?
+          Jobs.enqueue(:narrative_init,
+            user_id: self.id,
+            klass: DiscourseNarrativeBot::NewUserNarrative.to_s
+          )
+        elsif SiteSetting.discourse_narrative_bot_send_welcome_message
+          Jobs.enqueue(:send_default_welcome_message, user_id: self.id)
+        end
+      end
   end
 
   self.on(:post_created) do |post, options|
