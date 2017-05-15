@@ -371,10 +371,10 @@ es:
           Whoops! No hubo ninguna encuesta en tu respuesta.
           Usa el ícono de engranaje: <img src="/images/font-awesome-gear.png" width="16" height="16"> en el editor, o bien copia y pega esta encuesta en tu próxima respuesta:
 
-          [poll]
-          * :cat:
-          * :dog:
-          [/poll]
+              [poll]
+              * :cat:
+              * :dog:
+              [/poll]
         reply: |-
           Hey, ¡hermosa encuesta! ¿Cómo te enseñé?
               [poll]
