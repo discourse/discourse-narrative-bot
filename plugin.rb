@@ -23,6 +23,7 @@ after_initialize do
   load File.expand_path('../jobs/bot_input.rb', __FILE__)
   load File.expand_path('../jobs/narrative_timeout.rb', __FILE__)
   load File.expand_path('../jobs/narrative_init.rb', __FILE__)
+  load File.expand_path('../jobs/send_default_welcome_message.rb', __FILE__)
   load File.expand_path('../jobs/onceoff/grant_badges.rb', __FILE__)
   load File.expand_path("../lib/discourse_narrative_bot/actions.rb", __FILE__)
   load File.expand_path("../lib/discourse_narrative_bot/base.rb", __FILE__)
@@ -108,13 +109,13 @@ after_initialize do
   end
 
   self.add_model_callback(User, :after_commit, on: :create) do
-    return if SiteSetting.disable_discourse_narrative_bot_welcome_post
-
-    if enqueue_narrative_bot_job?
+    if !SiteSetting.disable_discourse_narrative_bot_welcome_post && enqueue_narrative_bot_job?
       Jobs.enqueue(:narrative_init,
         user_id: self.id,
         klass: DiscourseNarrativeBot::NewUserNarrative.to_s
       )
+    elsif SiteSetting.send_welcome_message
+      Jobs.enqueue(:send_default_welcome_message, user_id: self.id)
     end
   end
 

@@ -23,6 +23,21 @@ describe User do
       it 'should not initiate the bot' do
         expect { user }.to_not change { Post.count }
       end
+
+      describe "when send welcome message is enabled" do
+        before do
+          SiteSetting.send_welcome_message = true
+        end
+
+        it 'should send the right welcome message' do
+          expect { user }.to change { Topic.count }.by(1)
+
+          expect(Topic.last.title).to eq(I18n.t(
+            "system_messages.welcome_user.subject_template",
+            site_name: SiteSetting.title
+          ))
+        end
+      end
     end
 
     context 'when user is staged' do
@@ -54,6 +69,20 @@ describe User do
         it 'should not initiate the bot' do
           expect { user.update!(username: username) }.to_not change { Post.count }
         end
+      end
+    end
+
+    describe 'when welcome post is not disabled' do
+      before do
+        SiteSetting.disable_discourse_narrative_bot_welcome_post = false
+      end
+
+      it 'initiate the bot' do
+        expect { user }.to change { Topic.count }.by(1)
+
+        expect(Topic.last.title).to eq(I18n.t(
+          'discourse_narrative_bot.new_user_narrative.hello.title'
+        ))
       end
     end
   end
