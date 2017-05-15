@@ -4,7 +4,9 @@ module Jobs
 
     def execute(args)
       if user = User.find_by(id: args[:user_id])
-        args[:klass].constantize.new.input(:init, user)
+        I18n.with_locale(user.effective_locale) do
+          args[:klass].constantize.new.input(:init, user)
+        end
       end
     end
   end

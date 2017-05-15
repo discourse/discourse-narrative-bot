@@ -18,7 +18,8 @@ RSpec.describe DiscourseNarrativeBot::AdvancedUserNarrative do
   let(:narrative) { described_class.new }
   let(:other_topic) { Fabricate(:topic) }
   let(:other_post) { Fabricate(:post, topic: other_topic) }
-  let(:skip_trigger) { "#{DiscourseNarrativeBot::TrackSelector::SKIP_TRIGGER}" }
+  let(:skip_trigger) { DiscourseNarrativeBot::TrackSelector.skip_trigger }
+  let(:reset_trigger) { DiscourseNarrativeBot::TrackSelector.reset_trigger }
 
   describe '.can_start?' do
     describe 'when user is a moderator' do
@@ -45,8 +46,8 @@ RSpec.describe DiscourseNarrativeBot::AdvancedUserNarrative do
       expect(Post.last.raw).to eq(I18n.t(
         'discourse_narrative_bot.timeout.message',
         username: user.username,
-        skip_trigger: DiscourseNarrativeBot::TrackSelector::SKIP_TRIGGER,
-        reset_trigger: "#{DiscourseNarrativeBot::TrackSelector::RESET_TRIGGER} #{described_class::RESET_TRIGGER}",
+        skip_trigger: skip_trigger,
+        reset_trigger: "#{reset_trigger} #{described_class.reset_trigger}",
       ))
     end
   end
@@ -642,9 +643,11 @@ RSpec.describe DiscourseNarrativeBot::AdvancedUserNarrative do
         expect(narrative.get_data(user)).to eq({
           "state" => "end",
           "topic_id" => topic.id,
-          "track" => described_class.to_s,
-          "completed" => [described_class.to_s]
+          "track" => described_class.to_s
         })
+
+        expect(user.badges.where(name: DiscourseNarrativeBot::AdvancedUserNarrative::BADGE_NAME).exists?)
+          .to eq(true)
       end
     end
   end

@@ -23,12 +23,16 @@ after_initialize do
   load File.expand_path('../jobs/bot_input.rb', __FILE__)
   load File.expand_path('../jobs/narrative_timeout.rb', __FILE__)
   load File.expand_path('../jobs/narrative_init.rb', __FILE__)
+  load File.expand_path('../jobs/onceoff/grant_badges.rb', __FILE__)
   load File.expand_path("../lib/discourse_narrative_bot/actions.rb", __FILE__)
   load File.expand_path("../lib/discourse_narrative_bot/base.rb", __FILE__)
   load File.expand_path("../lib/discourse_narrative_bot/new_user_narrative.rb", __FILE__)
   load File.expand_path("../lib/discourse_narrative_bot/advanced_user_narrative.rb", __FILE__)
   load File.expand_path("../lib/discourse_narrative_bot/track_selector.rb", __FILE__)
   load File.expand_path("../lib/discourse_narrative_bot/certificate_generator.rb", __FILE__)
+  load File.expand_path("../lib/discourse_narrative_bot/dice.rb", __FILE__)
+  load File.expand_path("../lib/discourse_narrative_bot/quote_generator.rb", __FILE__)
+  load File.expand_path("../lib/discourse_narrative_bot/magic_8_ball.rb", __FILE__)
 
   module ::DiscourseNarrativeBot
     PLUGIN_NAME = "discourse-narrative-bot".freeze
@@ -71,12 +75,14 @@ after_initialize do
 
         raise Discourse::InvalidParameters.new('date must be present') unless params[:date]&.present?
 
+        generator = CertificateGenerator.new(user, params[:date])
+
         svg =
           case params[:type]
           when 'advanced'
-            CertificateGenerator.advanced_user_track(user, params[:date])
+            generator.advanced_user_track
           else
-            CertificateGenerator.new_user_track(user, params[:date])
+            generator.new_user_track
           end
 
         respond_to do |format|
@@ -115,6 +121,7 @@ after_initialize do
     def enqueue_narrative_bot_job?
       SiteSetting.discourse_narrative_bot_enabled &&
         self.id > 0 &&
+        !self.anonymous? &&
         !self.user_option.mailing_list_mode &&
         !self.staged &&
         !SiteSetting.discourse_narrative_bot_ignored_usernames.split('|'.freeze).include?(self.username)

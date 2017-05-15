@@ -1,6 +1,11 @@
 module DiscourseNarrativeBot
   class CertificateGenerator
-    def self.new_user_track(user, date)
+    def initialize(user, date)
+      @user = user
+      @date = I18n.l(Date.parse(date), format: :date_only)
+    end
+
+    def new_user_track
       width = 538.583 # Default width for the SVG
 
       svg = <<~SVG
@@ -452,16 +457,16 @@ module DiscourseNarrativeBot
             #{NewUserNarrative.discobot_user.username}
           </text>
           <text transform="translate(98.126 317.35)" font-size="18" fill="#020403" font-family="Tangerine, Tangerine">
-            #{date}
+            #{@date}
           </text>
           <g transform="translate(#{width / 2 - 12.5} 190)">
             <clipPath id="clipCircle">
               <circle r="15" cx="15" cy="15"/>
             </clipPath>
-            <image clip-path="url(#clipCircle)" height="30px" width="30px" xlink:href="data:image/png;base64,#{Base64.strict_encode64(URI(avatar_url(user)).open('rb', redirect: true, allow_redirections: :all).read)}"/>
+            <image clip-path="url(#clipCircle)" height="30px" width="30px" xlink:href="data:image/png;base64,#{Base64.strict_encode64(URI(avatar_url).open('rb', redirect: true, allow_redirections: :all).read)}"/>
           </g>
           <text x="#{width / 2}" y="240.94" text-anchor="middle" font-size="24" fill="#020403" font-family="Tangerine, Tangerine">
-            #{name(user)}
+            #{name}
           </text>
           #{logo_group(40, width, 280)}
         </g>
@@ -480,7 +485,7 @@ module DiscourseNarrativeBot
       SVG
     end
 
-    def self.advanced_user_track(user, date)
+    def advanced_user_track
       width = 722.8 # Default width for the SVG
 
       <<~SVG
@@ -518,19 +523,19 @@ module DiscourseNarrativeBot
           </g>
         </g>
         <text transform="matrix(1.0705 0 0 1 108.0718 388.3629)" fill="#020403" font-family="'Tangerine'" font-size="24.9219px">
-          #{date}
+          #{@date}
         </text>
         <g transform="translate(#{width / 2 - 14} 200)">
           <clipPath id="clipCircle">
             <circle r="19" cx="19" cy="19"/>
           </clipPath>
-          <image clip-path="url(#clipCircle)" height="38px" width="38px" xlink:href="data:image/png;base64,#{Base64.strict_encode64(URI(avatar_url(user)).open('rb', redirect: true, allow_redirections: :all).read)}"/>
+          <image clip-path="url(#clipCircle)" height="38px" width="38px" xlink:href="data:image/png;base64,#{Base64.strict_encode64(URI(avatar_url).open('rb', redirect: true, allow_redirections: :all).read)}"/>
         </g>
         <text transform="matrix(1.0705 0 0 1 544.2073 388.3629)" fill="#020403" font-family="'Tangerine'" font-size="24.9219px">
           #{AdvancedUserNarrative.discobot_user.username}
         </text>
         <text x="#{width / 2}" y="270" text-anchor="middle" fill="#020403" font-family="'Tangerine'" font-size="34.8841px">
-          #{name(user)}
+          #{name}
         </text>
         #{logo_group(55, width, 350)}
 
@@ -545,11 +550,11 @@ module DiscourseNarrativeBot
 
     private
 
-      def self.name(user)
-        (user.name && !user.name.blank? ? user.name : user.username).titleize
+      def name
+        (@user.name && !@user.name.blank? ? @user.name : @user.username).titleize
       end
 
-      def self.logo_group(size, width, height)
+      def logo_group(size, width, height)
         begin
           uri = URI(SiteSetting.logo_small_url)
 
@@ -570,8 +575,8 @@ module DiscourseNarrativeBot
         end
       end
 
-      def self.avatar_url(user)
-        UrlHelper.absolute(user.avatar_template.gsub('{size}', '250'))
+      def avatar_url
+        UrlHelper.absolute(@user.avatar_template.gsub('{size}', '250'))
       end
   end
 end

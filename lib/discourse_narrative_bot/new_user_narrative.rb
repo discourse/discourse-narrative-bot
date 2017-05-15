@@ -1,10 +1,9 @@
-require_relative '../dice'
-require_relative '../quote_generator'
 require 'distributed_mutex'
 
 module DiscourseNarrativeBot
   class NewUserNarrative < Base
     I18N_KEY = "discourse_narrative_bot.new_user_narrative".freeze
+    BADGE_NAME = 'Certified'.freeze
 
     TRANSITION_TABLE = {
       begin: {
@@ -110,9 +109,11 @@ module DiscourseNarrativeBot
       }
     }
 
-    RESET_TRIGGER = 'new user'.freeze
     SEARCH_ANSWER = ':herb:'.freeze
-    TIMEOUT_DURATION = 900 # 15 mins
+
+    def self.reset_trigger
+      I18n.t('discourse_narrative_bot.new_user_narrative.reset_trigger')
+    end
 
     def reset_bot(user, post)
       if pm_to_bot?(post)
@@ -282,6 +283,14 @@ module DiscourseNarrativeBot
 
       @post.post_analyzer.cook(@post.raw, {})
       transition = true
+      attempted_count = get_state_data(:attempted) || 0
+
+      if attempted_count < 2
+        @data[:skip_attempted] = true
+        @data[:attempted] = false
+      else
+        @data[:skip_attempted] = false
+      end
 
       if @post.post_analyzer.image_count > 0
         set_state_data(:post_id, @post.id)
@@ -312,7 +321,9 @@ module DiscourseNarrativeBot
       end
 
       fake_delay
-      reply = reply_to(@post, raw) unless @data[:attempted]
+
+      set_state_data(:attempted, attempted_count + 1) if !transition
+      reply = reply_to(@post, raw) unless @data[:attempted] && !transition
       enqueue_timeout_job(@user)
       transition ? reply : false
     end
@@ -487,7 +498,7 @@ module DiscourseNarrativeBot
           base_url: Discourse.base_url,
           certificate: certificate,
           discobot_username: self.class.discobot_user.username,
-          advanced_trigger: AdvancedUserNarrative::RESET_TRIGGER
+          advanced_trigger: AdvancedUserNarrative.reset_trigger
         ),
         topic_id: @data[:topic_id]
       )
@@ -495,21 +506,6 @@ module DiscourseNarrativeBot
 
     def like_post(post)
       PostAction.act(self.class.discobot_user, post, PostActionType.types[:like])
-    end
-
-    def cancel_timeout_job(user)
-      Jobs.cancel_scheduled_job(:narrative_timeout, user_id: user.id, klass: self.class.to_s)
-    end
-
-    def enqueue_timeout_job(user)
-      return if Rails.env.test?
-
-      cancel_timeout_job(user)
-
-      Jobs.enqueue_in(TIMEOUT_DURATION, :narrative_timeout,
-        user_id: user.id,
-        klass: self.class.to_s
-      )
     end
 
     def welcome_topic

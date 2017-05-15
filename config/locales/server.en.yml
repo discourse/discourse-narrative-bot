@@ -3,9 +3,22 @@ en:
     discourse_narrative_bot_enabled: 'Enable Discourse Narrative Bot'
     disable_discourse_narrative_bot_welcome_post: "Disable the welcome post by Discourse Narrative Bot"
     discourse_narrative_bot_ignored_usernames: "Usernames that the Discourse Narrative Bot should ignore"
+    discourse_narrative_bot_disable_public_replies: "Disable public replies by Discourse Narrative Bot"
+
+  badges:
+    certified:
+      name: Certified
+      description: "Completed our new user tutorial"
+      long_description: |
+        This badge is granted upon successful completion of the interactive new user tutorial. You’ve taken the initiative to learn the basic tools of discussion, and now you're certified!
+    licensed:
+      name: Licensed
+      description: "Completed our advanced user tutorial"
+      long_description: |
+        This badge is granted upon successful completion of the interactive advanced user tutorial. You’ve mastered the advanced tools of discussion  — and now you’re fully licensed!
 
   discourse_narrative_bot:
-    bio: "Hi, I’m not a real person. I’m a bot. To interact with me, send me a message or mention **`@%{discobot_username}`** anywhere."
+    bio: "Hi, I’m not a real person. I’m a bot that can teach you about this site. To interact with me, send me a message or mention **`@%{discobot_username}`** anywhere."
 
     timeout:
       message: |-
@@ -19,23 +32,100 @@ en:
 
         If you’d rather not, that’s OK too. I’m a robot. You won’t hurt my feelings. :sob:
 
+    dice:
+      trigger: "roll"
+      invalid: |-
+        I’m sorry, it is mathematically impossible to roll that combination of dice. :confounded:
+      not_enough_dice: |-
+        I only have %{num_of_dice} dice. [Shameful](http://www.therobotsvoice.com/2009/04/the_10_most_shameful_rpg_dice.php), I know!
+      out_of_range: |-
+        Did you know that [the maximum number of sides](https://www.wired.com/2016/05/mathematical-challenge-of-designing-the-worlds-most-complex-120-sided-dice) for a mathematically fair die is 120?
+      results: |-
+        > :game_die: %{results}
+
+    quote:
+      trigger: "quote"
+      "1":
+        quote: "In the middle of every difficulty lies opportunity"
+        author: "Albert Einstein"
+      "2":
+        quote: "You must be the change you wish to see in the world."
+        author: "Mahatma Gandhi"
+      "3":
+        quote: "Don’t cry because it’s over, smile because it happened."
+        author: "Dr Seuss"
+      "4":
+        quote: "If you want something done right, do it yourself."
+        author: "Charles-Guillaume Étienne"
+      "5":
+        quote: "Believe you can and you’re halfway there."
+        author: "Theodore Roosevelt"
+      "6":
+        quote: "Life is like a box of chocolates. You never know what you’re gonna get."
+        author: "Forrest Gump’s Mom"
+      "7":
+        quote: "That’s one small step for a man, a giant leap for mankind."
+        author: "Neil Armstrong"
+      "8":
+        quote: "Do one thing every day that scares you."
+        author: "Eleanor Roosevelt"
+      "9":
+        quote: "Mistakes are always forgivable, if one has the courage to admit them."
+        author: "Bruce Lee"
+      "10":
+        quote: "Whatever the mind of man can conceive and believe, it can achieve."
+        author: "Napoleon Hill"
+      results: |-
+        > :left_speech_bubble: _%{quote}_ &mdash; %{author}
+
+    magic_8_ball:
+      trigger: 'fortune'
+      answers:
+        "1": "It is certain"
+        "2": "It is decidedly so"
+        "3": "Without a doubt"
+        "4": "Yes definitely"
+        "5": "You may rely on it"
+        "6": "As I see it, yes"
+        "7": "Most likely"
+        "8": "Outlook good"
+        "9": "Yes"
+        "10": "Signs point to yes"
+        "11": "Reply hazy try again"
+        "12": "Ask again later"
+        "13": "Better not tell you now"
+        "14": "Cannot predict now"
+        "15": "Concentrate and ask again"
+        "16": "Don't count on it"
+        "17": "My reply is no"
+        "18": "My sources say no"
+        "19": "Outlook not so good"
+        "20": "Very doubtful"
+      result: |-
+        > :crystal_ball: %{result}
+
     track_selector:
+      reset_trigger: 'start'
+      skip_trigger: 'skip'
+      help_trigger: 'display help'
+
       random_mention:
-        dice: |-
-          :game_die: dice roll: %{results}
-        quote: |-
-          > :left_speech_bubble: _%{quote}_ &mdash; %{author}
+        reply: |-
+          Hi! To find out what I can do, say `@%{discobot_username} %{help_trigger}`.
         tracks: |-
-          Hi! I currently know how to do the following things:
+          I currently know how to do the following things:
 
           `@%{discobot_username} %{reset_trigger} %{default_track}`
           > Starts one of the following interactive narratives: %{tracks}.
         bot_actions: |-
-          `@%{discobot_username} roll 2d6`
-          > :game_die: dice roll: 3, 6
+          `@%{discobot_username} %{dice_trigger} 2d6`
+          > :game_die: 3, 6
 
-          `@%{discobot_username} quote`
+          `@%{discobot_username} %{quote_trigger}`
           > :left_speech_bubble: _Carry out a random act of kindness, with no expectation of reward, safe in the knowledge that one day someone might do the same for you_ &mdash; Princess Diana
+
+          `@%{discobot_username} %{magic_8_ball_trigger}`
+          > :crystal_ball: You may rely on it
 
       do_not_understand:
         first_response: |-
@@ -47,11 +137,12 @@ en:
         second_response: |-
           Aw, sorry. I’m still not getting it. :anguished:
 
-          It’s not you – it’s me. I blame my programmers! They’re terrible!
+          I’m just a bot, but if you’d like to reach a real person, see [our contact page](/about).
 
-          Perhaps let’s start over? Say `%{reset_trigger}` to start over. In the meantime, I’ll stay out of your way.
+          In the meantime, I’ll stay out of your way.
 
     new_user_narrative:
+      reset_trigger: "new user"
       cert_title: "In recognition of successful completion of the new user tutorial"
 
       hello:
@@ -194,7 +285,7 @@ en:
         instructions: |-
           _psst_ … I’ve hidden a surprise in one of my previous replies. If you’re up for the challenge, **select the search icon** <img src="/images/font-awesome-search.png" width="16" height="16"> at the top right &#8599; to search for it.
 
-          <small>Try searching for the term "capy&#8203;bara" in this topic</small>
+          Try searching for the term "capy&#8203;bara" in this topic
         hidden_message: |-
           How did you miss this capybara? :wink:
 
@@ -226,10 +317,13 @@ en:
         alt: 'Certificate of Achievement'
 
     advanced_user_narrative:
+      reset_trigger: 'advanced user'
       cert_title: "In recognition of successful completion of the advanced user tutorial"
       title: ':arrow_up: Advanced user features'
       start_message: |-
-        Hi @%{username}, let’s cover some advanced features.
+        As an _advanced_ user, have you visited [your preferences page](/my/preferences) yet @%{username}? There are lots of ways to customize your experience, such as selecting a dark or light theme.
+
+        But I digress, let’s begin!
 
       edit:
         bot_created_post_raw: "@%{discobot_username} is, by far, the coolest bot I know :wink:"
@@ -250,7 +344,7 @@ en:
         instructions: |-
           If you’d like to withdraw a post you made, you can delete it.
 
-          Go ahead and **delete** any of your posts above by using the <img src="/images/font-awesome-trash.png" width="16" height="16"> **delete** action.
+          Go ahead and **delete** any of your posts above by using the <img src="/images/font-awesome-trash.png" width="16" height="16"> **delete** action. Don’t delete the first post, though!
         not_found: |-
           I don’t see any deleted posts yet? Remember <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> show more will reveal <img src="/images/font-awesome-trash.png" width="16" height="16"> delete.
         reply: |-

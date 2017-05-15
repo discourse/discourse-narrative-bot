@@ -2,7 +2,20 @@ es:
   site_settings:
     discourse_narrative_bot_enabled: 'Habilitar Discourse Narrative Bot'
     disable_discourse_narrative_bot_welcome_post: "Deshabilitar el post de bienvenida por Discourse Narrative Bot"
+    discourse_narrative_bot_ignored_usernames: "Nombres de usuario que el Discourse Narrative Bot debe ignorar"
+    discourse_narrative_bot_disable_public_replies: "Deshabilitar respuestas públicas del Discourse Narrative Bot"
 
+  badges:
+    certified:
+      name: Certificado
+      description: "Ha completado nuestro tutorial de nuevo usuario"
+      long_description: |
+        Este distintivo se otorga a quienes han completado el tutorial de nuevo usuario. Has tomado la iniciativa para aprender las herramientas básicas para el debate, y ahora tú estás certificado!
+    licensed:
+      name: Licenciado
+      description: "Ha completado nuestro tutorial de usuario avanzado"
+      long_description: |
+        Este distintivo se otorga a quienes han completado el tutorial de usuario avanzado. Has dominado las herramientas avanzadas de discusión — y ahora tú eres un licenciado!
   discourse_narrative_bot:
     bio: "Hola, no soy una persona real. Soy un robot (bot). Para interactuar conmigo, me envías un mensaje o me mencionas **`@%{discobot_username}`** en cualquier lugar."
 
@@ -17,38 +30,114 @@ es:
 
         Si prefieres no continuar, está OK también! Soy un robot. No herirás mis sentimientos. :sob:
 
+    dice:
+      trigger: "tirar"
+      invalid: |-
+        Lo siento, es matemáticamente imposible lanzar esa combinación de dados. :confounded:
+      not_enough_dice: |-
+        Solo tengo %{num_of_dice} dados para jugar. Es vergonsozo lo sé!
+      out_of_range: |-
+        ¿Sabías que el máximo número de lados para que un dado, matemáticamente correcto, es de 120 lados?
+      results: |-
+        > :game_die: tirada de dados: %{results}
+
+    quote:
+      trigger: "citar"
+      '1':
+        quote: "In the middle of every difficulty lies opportunity"
+        author: "Albert Einstein"
+      '2':
+        quote: "You must be the change you wish to see in the world."
+        author: "Mahatma Gandhi"
+      '3':
+        quote: "Don’t cry because it’s over, smile because it happened."
+        author: "Dr Seuss"
+      '4':
+        quote: "If you want something done right, do it yourself."
+        author: "Charles-Guillaume Étienne"
+      '5':
+        quote: "Believe you can and you’re halfway there."
+        author: "Theodore Roosevelt"
+      '6':
+        quote: "Life is like a box of chocolates. You never know what you’re gonna get."
+        author: "Forrest Gump’s Mom"
+      '7':
+        quote: "That’s one small step for a man, a giant leap for mankind."
+        author: "Neil Armstrong"
+      '8':
+        quote: "Do one thing every day that scares you."
+        author: "Eleanor Roosevelt"
+      '9':
+        quote: "Mistakes are always forgivable, if one has the courage to admit them."
+        author: "Bruce Lee"
+      '10':
+        quote: "Whatever the mind of man can conceive and believe, it can achieve."
+        author: "Napoleon Hill"
+      results: |-
+        > :left_speech_bubble: _%{quote}_ &mdash; %{author}
+
+    magic_8_ball:
+      trigger: 'suerte'
+      answers:
+        '1': "Es cierto"
+        '2': "Es decididamente así"
+        '3': "Sin ninguna duda"
+        '4': "Definitivamente sí"
+        '5': "Puedes confiar en ello"
+        '6': "Como yo lo veo, sí"
+        '7': "Más probable"
+        '8': "Buena perspectiva"
+        '9': "Sí"
+        '10': "Las señales apuntan a que sí"
+        '11': "Respuesta confusa, intenta otra vez"
+        '12': "Pregunta de nuevo más tarde"
+        '13': "Mejor no te digo ahora"
+        '14': "No se puede predecir ahora"
+        '15': "Concentrate y pregunta de nuevo"
+        '16': "No cuentes con eso"
+        '17': "Mi respuesta es no"
+        '18': "Mis fuentes dicen no"
+        '19': "No son buenas las perspectivas"
+        '20': "Muy dudoso"
+      result: |-
+        > :crystal_ball: %{result}
+
     track_selector:
+      reset_trigger: 'empezar'
+      skip_trigger: 'saltar'
+      help_trigger: 'mostrar ayuda'
       random_mention:
-        dice: |-
-          :game_die: dice roll: %{results}
-        quote: |-
-          > :left_speech_bubble: _%{quote}_ &mdash; %{author}
+        reply: |-
+          ¿Alguien me llamó? Averigua qué puedo hacer con `@%{discobot_username} %{help_trigger}`.
         tracks: |-
           Hola! Estoy conociendo cómo hacer las siguientes cosas:
 
           `@%{discobot_username} %{reset_trigger} %{default_track}`
-          > Starts one of the following interactive narratives: %{tracks}.
+          > Inicia una de las siguientes narraciones interactivas: %{tracks}.
         bot_actions: |-
-          `@%{discobot_username} roll 2d6`
-          > :game_die: dice roll: 3, 6
+          `@%{discobot_username} %{dice_trigger} 2d6`
+          > :game_die: 3, 6
 
-          `@%{discobot_username} quote`
+          `@%{discobot_username} %{quote_trigger}`
           > :left_speech_bubble: _Carry out a random act of kindness, with no expectation of reward, safe in the knowledge that one day someone might do the same for you_ &mdash; Princess Diana
+
+          `@%{discobot_username} %{magic_8_ball_trigger}`
+          > :crystal_ball: No se puede predecir ahora
 
       do_not_understand:
         first_response: |-
           Hey, gracias por tu respuesta!
           Lamentablemente, como un robot con programación muy pobre, no he podido entender lo que me has dicho. :frowning:
-        track_response:
-          Puedes intentarlo de nuevo, o bien saltar este paso, dime `%{skip_trigger}`. O también, para empezar de nuevo, dime `%{reset_trigger}`.
+        track_response: Puedes intentarlo de nuevo, o bien saltar este paso, dime `%{skip_trigger}`. O también, para empezar de nuevo, dime `%{reset_trigger}`.
         second_response: |-
-          Aw, disculpa. Aún no lo entiendo. :anguished:
+          Aw, lo siento. Sigo sin entenderlo. :anguished:
 
-          No eres tú – soy yo. Culpo a mis programadores! Ellos son terribles!
+          Soy solo un robot, pero si quieres contactar a una persona real, mira [nuestra página de contacto](/about).
 
-          Quizás empezando de nuevo? Dime `%{reset_trigger}` para empezar de nuevo. Mientras tanto, me mantendré fuera de tu camino.
+          Mientras tanto, me quedaré fuera de tu camino.
 
     new_user_narrative:
+      reset_trigger: "usuario nuevo"
       cert_title: "En reconocimiento de la finalización exitosa del tutorial de usuario nuevo"
 
       hello:
@@ -95,6 +184,7 @@ es:
           Parece que no subiste ninguna imagen, así que he elegido una imagen que estoy _seguro_ que disfrutarás.
           `%{image_url}`
           Trata de subir esta ahora, o bien copia el enlace de la imagen y pega el mismo en una única línea dentro del mensaje!
+
       formatting:
         instructions: |-
           ¿Puedes hacer algunas letras en **negrita** o _cursiva_ en tu respuesta?
@@ -124,6 +214,7 @@ es:
         not_found: |-
           Hmm me parece que no me has citado en tu respuesta!?
           Seleccionando cualquier texto de mi mensaje, aparecerá la palabra <kbd>**Citar**</kbd>, como si fuese un botón. Y si decides presionar **Responder** habiendo seleccionado el texto, funcionará igual! ¿Puedes intentarlo de nuevo?
+
       bookmark:
         instructions: |-
           Si quieres aprender más, selecciona <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> debajo y <img src="/images/font-awesome-bookmark.png" width="16" height="16">  **guarda como favorito este mensaje privado**. Si lo haces, quizás haya un :gift: en el futuro!
@@ -131,9 +222,10 @@ es:
           Excelente! Ahora puedes encontrar fácilmente las conversaciones privadas en cualquier momento, desde la [sección de marcadores de tu perfil](%{profile_page_url}/activity/bookmarks). Sólo debes seleccionar la foto de tu perfil en la parte superior derecha de la pantalla &#8599;
         not_found: |-
           Oh oh, no veo ningún mensaje marcado como favorito en esta conversación. No encontraste cómo marcar el mensaje debajo del post? Prueba usando el "ver más" <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> para ver las opciones, y ahí está el botón del marcador.
+
       emoji:
         instructions: |-
-          Habrás notado que uso algunas imagenes pequeñas en mis respuestas por ejemplo: :blue_car::dash: éstos son denominados [emoji](https://en.wikipedia.org/wiki/Emoji). ¿Puedes **agregar un emoji** a tu respuesta? Cualquiera de éstos funcionarán:
+          Habrás notado que uso algunas imagenes pequeñas en mis respuestas por ejemplo: :blue_car::dash: éstos son denominados [emoji](https://es.wikipedia.org/wiki/Emoji). ¿Puedes **agregar un emoji** a tu respuesta? Cualquiera de éstos funcionarán:
 
           - Escribe `:) ;) :D :P :O`
 
@@ -175,14 +267,14 @@ es:
 
       search:
         instructions: |-
-          _psst_ … He ocultado una sorpresa en una de mis respuestas anteriores. Si estás preparado para el desafío, **selecciona el ícono de búsqueda** <img src="/images/font-awesome-search.png" width="16" height="16"> en la parte superior &#8599; para buscarlo.
-          <small>Prueba buscando el término "capy&#8203;bara" en este tema</small>
+          _psst_ … Te he ocultado una sorpresa en una de mis respuestas previas. Si aceptas el reto, **selecciona el icono de búsqueda** <img src="/images/font-awesome-search.png" width="16" height="16"> en la parte superior &#8599; y busca lo siguiente.
+          Prueba buscar el término "capy&#8203;bara" en este tema
         hidden_message: |-
           Cómo te perdiste este capybara? :wink:
 
           <img src="/images/capybara-eating.gif"/>
 
-          ¿Te fijaste en que estás de vuelta al principio? Alimenta este pobre hambriendo capybara **respondiendo con el emoji `:herb:` ** y serás automáticamente enviado al final.
+          ¿Te fijaste en que estás de vuelta al principio? Alimenta este pobre hambriendo capybara **respondiendo con el emoji `:herb:`** y serás automáticamente enviado al final.
         reply: |-
           Yay lo encontraste! :tada:
 
@@ -193,6 +285,7 @@ es:
           - Si tienes un :keyboard: físico, presiona la tecla <kbd>?</kbd> para ver nuestros prácticos atajos del teclado.
         not_found: |-
           Hmm… parece que podrías estar teniendo problemas. Lo siento acerca de ésto. Buscaste <img src="/images/font-awesome-search.png" width="16" height="16"> el término **capy&#8203;bara**?
+
       end:
         message: |-
           Gracias por quedarte conmigo @%{username}! Hice esto por tí, creo que te lo has ganado:
@@ -207,10 +300,13 @@ es:
         alt: 'Certificado de logro'
 
     advanced_user_narrative:
+      reset_trigger: 'usuario avanzado'
       cert_title: "En reconocimiento de la finalización exitosa del tutorial de usuario avanzado"
       title: ':arrow_up: Funciones avanzadas del usuario'
       start_message: |-
-        Hola @%{username}, cubramos algunas funciones avanzadas.
+        Como un usuario _avanzado_, ¿no has visitado [tus preferencias](/my/preferences) aún @%{username}? Hay muchas formas de personalizar tu experiencia, por ejemplo podrías elegir un diseño oscuro.
+        ¡Pero yo divago, comencemos!
+      
       edit:
         bot_created_post_raw: "@%{discobot_username} es, por lejos, el mejor bot que conozco :wink:"
         instructions: |-
@@ -222,10 +318,11 @@ es:
         reply: |-
           ¡Buen trabajo!
           Tenga en cuenta que las ediciones realizadas después de 5 minutos aparecerán como revisiones de edición pública y aparecerá un pequeño ícono de lápiz en la parte superior derecha con el recuento de revisiones.
+      
       delete:
         instructions: |-
-          Si desea retirar una publicación que haya realizado, puede eliminarla.
-          Vamos, **elimina** cualquiera de tus mensajes anteriores usando el ícono <img src="/images/font-awesome-trash.png" width="16" height="16"> de la acción **borrar**.
+          Si deseas retirar una publicación que hayas realizado, puedes eliminarla.
+          Vamos a **borrar** cualquier post que hayas escrito usando la acción <img src="/images/font-awesome-trash.png" width="16" height="16"> para **borrar**. No vayas a querer borrar el primer post!
         not_found: |-
           ¿Todavía no veo ninguna publicación eliminada? Recuerda presionar <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> para mostrar el botón <img src="/images/font-awesome-trash.png" width="16" height="16"> y borrar.
         reply: |-
@@ -254,6 +351,7 @@ es:
               Yo puedo crear un enlace a la categoría con #
         reply: |-
           ¡Excelente! Recuerda que ésto funciona para ambos, categorías _y_ etiquetas, si las etiquetas están disponibles.
+      
       change_topic_notification_level:
         instructions: |-
           Cada tema tiene un nivel de notificación. Comienza en 'normal', lo que significa que normalmente sólo se notificará cuando alguien está hablando directamente con usted.
@@ -264,6 +362,7 @@ es:
         reply: |-
           ¡Impresionante trabajo! Espero que no silencies este tema ya que puedo ser un poco hablador a veces :grin:.
           Tenga en cuenta que cuando responde a un tema o lee un tema durante más de unos minutos, se establece automáticamente en un nivel de notificación de "seguimiento". Puedes cambiar esto en [tus preferencias de usuario](/my/preferences).
+      
       poll:
         instructions: |-
           ¿Sabes que puedes agregar una encuesta en cualquier mensaje? Intenta usando el botón de engranaje <img src="/images/font-awesome-gear.png" width="16" height="16"> en el editor para **armar una encuesta**.
@@ -271,16 +370,17 @@ es:
           Whoops! No hubo ninguna encuesta en tu respuesta.
           Usa el ícono de engranaje: <img src="/images/font-awesome-gear.png" width="16" height="16"> en el editor, o bien copia y pega esta encuesta en tu próxima respuesta:
 
-              [poll]
-              * :cat:
-              * :dog:
-              [/poll]
+          [poll]
+          * :cat:
+          * :dog:
+          [/poll]
         reply: |-
           Hey, ¡hermosa encuesta! ¿Cómo te enseñé?
-          [poll]
-          * :+1:
-          * :-1:
-          [/poll]
+              [poll]
+              * :+1:
+              * :-1:
+              [/poll]
+      
       details:
         instructions: |-
           A veces, tú puedes decidir **ocultar detalles** en tus respuestas:
@@ -304,6 +404,7 @@ es:
               [/details]
         reply: |-
           ¡Gran trabajo — tu atención a los _detalles_ es admirable!
+      
       end:
         message: |-
           Usted ha brillado a través de esto como un _usuario avanzado_ de hecho :bow:
@@ -313,5 +414,7 @@ es:
           Eso es todo lo que tengo para ti.
 
           ¡Adiós por ahora! Si desea hablar conmigo de nuevo, envíeme un mensaje en cualquier momento :sunglasses:
+      
       certificate:
         alt: 'Advanced User Track Certificate of Achievement'
+        

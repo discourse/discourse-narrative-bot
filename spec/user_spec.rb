@@ -33,6 +33,16 @@ describe User do
       end
     end
 
+    context 'when user is anonymous?' do
+      let(:anonymous_user) { Fabricate(:anonymous) }
+
+      it 'should not initiate the bot' do
+        SiteSetting.allow_anonymous_posting = true
+
+        expect { anonymous_user }.to_not change { Post.count }
+      end
+    end
+
     context "when user's username should be ignored" do
       let(:user) { Fabricate.build(:user) }
 

@@ -7,6 +7,8 @@ plugins:
   discourse_narrative_bot_ignored_usernames:
     default: 'discourse'
     type: list
+  discourse_narrative_bot_disable_public_replies:
+    default: false
 
 uncategorized:
   send_welcome_message:
