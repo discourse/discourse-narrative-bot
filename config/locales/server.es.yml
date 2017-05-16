@@ -4,6 +4,7 @@ es:
     disable_discourse_narrative_bot_welcome_post: "Deshabilitar el post de bienvenida por Discourse Narrative Bot"
     discourse_narrative_bot_ignored_usernames: "Nombres de usuario que el Discourse Narrative Bot debe ignorar"
     discourse_narrative_bot_disable_public_replies: "Deshabilitar respuestas públicas del Discourse Narrative Bot"
+    discourse_narrative_bot_welcome_post_type: "Tipo de post de bienvenida que el Discourse Narrative Bot debería enviar"
 
   badges:
     certified:
@@ -101,6 +102,31 @@ es:
         '20': "Muy dudoso"
       result: |-
         > :crystal_ball: %{result}
+
+    welcome_user:
+      text_body_template: |
+        Gracias por unirte a %{site_name}, y bienvenido!
+        %{new_user_tips}
+        Creemos en el [comportamiento de una comunidad civilizada](%{base_url}/guidelines) en todo momento.
+        ¡Disfruta tu estadía!
+        (Soy solo un robot, pero [nuestro amigable staff](/about) también está aquí para ayudarte si necesitas contactar a una persona.)
+    welcome_invite:
+      text_body_template: |
+        Gracias por aceptar la invitación a %{site_name} -- bienvenido!
+
+        - Hemos creado esta nueva cuenta **%{username}** para tí. Cambia tu nombre o tu contraseña ingresando a [tu perfil][prefs].
+
+        - Cuando ingreses al foro, por favor **usa la misma dirección de correo que se usó en tu invitación original** — si usas otro email, no podemos saber que eres tú!
+
+        %{new_user_tips}
+
+        Creemos en el [comportamiento de una comunidad civilizada](%{base_url}/guidelines) en todo momento.
+
+        ¡Disfruta tu estadía!
+
+        (Soy solo un robot, pero [nuestro amigable staff](/about) también está aquí para ayudarte si necesitas contactar a una persona.)
+
+        [prefs]: %{user_preferences_url}
 
     track_selector:
       reset_trigger: 'empezar'
