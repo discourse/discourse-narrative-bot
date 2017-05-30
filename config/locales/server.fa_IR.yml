@@ -1,0 +1,414 @@
+fa_IR:
+  site_settings:
+    discourse_narrative_bot_enabled: 'فعالسازی بات راوی دیسکورس'
+    disable_discourse_narrative_bot_welcome_post: "پیام خوشامد بات راوی را غیرفعال کن"
+    discourse_narrative_bot_ignored_usernames: "نام کاربرهایی که بات راوی برایشان غیرفعال باشد"
+    discourse_narrative_bot_disable_public_replies: "پاسخ های عمومی بات راوی را غیرفعال کن"
+
+  badges:
+    certified:
+      name: تایید شده
+      description: "آموزش کاربر تازه را به پایان رسانده."
+      long_description: |
+              این نشان وقتی شما آموزش مقدماتی کاربر تازه وارد را به پایان می‌رسانید، به شما اهدا می‌شود. شما برای یادگیری نحوه ی استفاده از فروم زمان گذاشتید و تایید شده اید.
+    licensed:
+      name: مجاز
+      description: "آموزش سطح پیشرفته ی کار با فوروم را به پایان رسانده"
+      long_description: |
+              این نشان به کسانی که آموزش پیشرفته ی استفاده از این فروم را به پایان رسانده اند، اهدا میشود. شما الان بر تمام فیچرهای اینجا مسلط هستید. 
+  discourse_narrative_bot:
+    bio: " سلام. من یه ادم واقعی نیستم! یه روبات هستم برای تعامل با من، کافیه یه پیام بهم بفرستی و یا اسمم رو هر جا که خواستی صدا کنی. 
+**`@%{discobot_username}`**
+
+    timeout:
+      message: |-
+        سلام @%{username}، دیدم خیلی وقته ازت نشنیدم و گفتم یه سری بزنم.
+
+        - برا ادامه دادن، هر وقت که خواستی بهم پاسخ بده.
+
+        - اگه میخوای از این قدم بپری، کافیه بگی `%{skip_trigger}`.
+
+        - برای شروع دوباره کافیه بگی `%{reset_trigger}`.
+        اگه هم نخواستی باهام در ارتباط باشی، اکیه. من یه روباتم و احساسی ندارم :sob:
+
+    dice:
+      invalid: |-
+        متاسفم، نمیشه چنین ترکیب تاسی انداخت :confounded:
+      not_enough_dice: |-
+        من فقط %{num_of_dice}  تا تاس دارم. [Shameful](http://www.therobotsvoice.com/2009/04/the_10_most_shameful_rpg_dice.php، میدونم!
+      out_of_range: |-
+        می‌دونستی [بیشترین تعداد ورهای یه تاس ۱۲۰ تاس!](https://www.wired.com/2016/05/mathematical-challenge-of-designing-the-worlds-most-complex-120-sided-dice)
+      results: |-
+        > :game_die: %{results}
+
+    quote:
+      "1":
+        quote: "In the middle of every difficulty lies opportunity"
+        author: "Albert Einstein"
+      "2":
+        quote: "You must be the change you wish to see in the world."
+        author: "Mahatma Gandhi"
+      "3":
+        quote: "Don’t cry because it’s over, smile because it happened."
+        author: "Dr Seuss"
+      "4":
+        quote: "If you want something done right, do it yourself."
+        author: "Charles-Guillaume Étienne"
+      "5":
+        quote: "Believe you can and you’re halfway there."
+        author: "Theodore Roosevelt"
+      "6":
+        quote: "Life is like a box of chocolates. You never know what you’re gonna get."
+        author: "Forrest Gump’s Mom"
+      "7":
+        quote: "That’s one small step for a man, a giant leap for mankind."
+        author: "Neil Armstrong"
+      "8":
+        quote: "Do one thing every day that scares you."
+        author: "Eleanor Roosevelt"
+      "9":
+        quote: "Mistakes are always forgivable, if one has the courage to admit them."
+        author: "Bruce Lee"
+      "10":
+        quote: "Whatever the mind of man can conceive and believe, it can achieve."
+        author: "Napoleon Hill"
+      results: |-
+        > :left_speech_bubble: _%{quote}_ &mdash; %{author}
+
+    magic_8_ball:
+      answers:
+        "1": "It is certain"
+        "2": "It is decidedly so"
+        "3": "Without a doubt"
+        "4": "Yes definitely"
+        "5": "You may rely on it"
+        "6": "As I see it, yes"
+        "7": "Most likely"
+        "8": "Outlook good"
+        "9": "Yes"
+        "10": "Signs point to yes"
+        "11": "Reply hazy try again"
+        "12": "Ask again later"
+        "13": "Better not tell you now"
+        "14": "Cannot predict now"
+        "15": "Concentrate and ask again"
+        "16": "Don't count on it"
+        "17": "My reply is no"
+        "18": "My sources say no"
+        "19": "Outlook not so good"
+        "20": "Very doubtful"
+      result: |-
+        > :crystal_ball: %{result}
+
+    track_selector:
+      random_mention:
+      reply: |-
+          کسی من رو صدا کرد؟ اگه میخوای ببینی چی کارا میتونم بکنم صدام کن: `@%{discobot_username} help`.
+      tracks: |-
+          سلام! من الان این کارها رو بلدم:
+
+          `@%{discobot_username} %{reset_trigger} %{default_track}`
+          > یکی از گفتگوهای زیر رو شروع میکنه: %{tracks}.
+        bot_actions: |-
+          `@%{discobot_username} roll 2d6`
+          > :game_die: 3, 6
+
+          `@%{discobot_username} quote`
+          > :left_speech_bubble: _Carry out a random act of kindness, with no expectation of reward, safe in the knowledge that one day someone might do the same for you_ &mdash; Princess Diana
+
+          `@%{discobot_username} fortune`
+          > :crystal_ball: Cannot predict now
+
+      do_not_understand:
+        first_response: |-
+          هییی. از پاسخت ممنونیم!
+          
+          متاسفانه، به عنوان یه بات ساده، نمیدونم دقیقا چی گفتی! :frowning: 
+          میتونی دوباره تلاش کنی، یا اگه دوست داری دوباره به اول درس برگردی، کافیه بگی:`@%{discobot_username} %{reset_trigger}`.
+        second_response: |-
+          متاسفم، ولی هنوز متوجه نمیشم چی میگی :anguished:
+          
+          من فقط یه باتم، اگه لازمه با یه ادم صحبت کنی برو به [تماس با ما](/about). تا اون موقع من مزاحمت نمیشم.
+
+    new_user_narrative:
+      cert_title: "In recognition of successful completion of the new user tutorial"
+
+      hello:
+        title: ":robot: Greetings!"
+        message: |-
+          خوش آمدید! و ممنون که به %{title} پیوستید. 
+          
+          - من فقط یه رباتم، اگه لازمه با یه آدم در ارتباط باشی، [ادمین‌های مهربونمون](/about) در خدمت شمان.
+          
+          - برای حفظ اینجا، به صورت موقت امکانات در دسترس کاربرهای جدید را محدود نگه داشتیم. همین طور که شما رو بیشتر شناختیم، امکانات و همین طور [نشان‌](/badges)های جدید به دست خواهید آورد.
+          
+          - ما همیشه به [اصول رفتار جامعه‌ی متمدن](/guidelines) اعتقاد داریم.
+
+      onebox:
+        instructions: |-
+          حالا، میشه این لینک ها رو برای من به اشتراک بذاری؟ کافیه به این پیام پاسخ بدی و هر لینک رو در یه خط جداگونه بذاری تا ببینی چه اتفاقی میفته:
+          - https://en.wikipedia.org/wiki/Inherently_funny_word
+          - https://en.wikipedia.org/wiki/Death_by_coconut
+          - https://en.wikipedia.org/wiki/Calculator_spelling
+
+        reply: |-
+          عالی! این مورد برای اکثر لینک ها <img src="/images/font-awesome-link.png" width="16" height="16"> کار میکنه. فقط یادت باشه لازمه لینک در _خط جدا_ قرار بگیره، بدون اینکه قبل و بعدش چیزی قرار بگیره.
+        not_found: |-
+          متاسفم، نمیتونم هیچ لینکی در پاسخت پیدا کنم! :cry:
+          
+          میشه لینک زیر رو در یه خط جدا در پاسخ بعدیت بذاری؟
+          
+          - https://en.wikipedia.org/wiki/Exotic_Shorthair
+
+      images:
+        instructions: |-
+          اینم یه عکس تک شاخ:
+          
+          <img src="/images/unicorn.jpg" width="520" height="381">
+          
+          اگه دوستش داری (کی نداره!) پیش برو و دکمه ی مفید :heart: در زیر پست رو کلیک کن تا من هم خبر دار شم.
+          
+          میتونی **تو پاسخت یه تصویر بذاری؟** هر تصویری که خواستی، کافیه بگیریش و بندازیش تو ادیتور پاسخ، و یا حتی کپی کنی و اینجا بچسبونیش.
+        reply: |-
+          چه عکس خوبی - لایکت کردم :heart:   که بهت بگم چقد از پست خوشم اومده :heart_eyes:
+        like_not_found: |-
+          فراموش کردی [پستم](%{url})  رو لایک کنی :heart: :crying_cat_face:
+        not_found: |-
+          به نظر میرسه تصویری اپلود نکردی، برا همین یه عکس که مطمئنم خوشت میاد گذاشتم اینجا:
+          
+          `%{image_url}`
+          
+          دفعه ی بعدی سعی کن این عکس رو اپلود کنی.         
+
+      formatting:
+        instructions: |-
+        
+          میتونی تو پاسخت بعضی کلمه ها رو **بولد** یا _ایتالیک_ بنویسی؟ می‌تونی از روش‌های زیر استفاده کنی:
+          
+          - ستاره: `**بولد**` یا خط زیر: `_ایتالیک_`.
+          
+          - یا دکمه ی <kbd><b>B</b></kbd> یا <kbd><i>I</i></kbd> در ویراستار را کلیک کن.     
+          
+        reply: |-
+          عالی! برای فرمت دهی به نوشته ت میتونی از HTML و BBCode هم استفاده کنی. برای یادگیری بیشتر میتونی از این [راهنما](http://commonmark.org/help) کمک بگیری:nerd:
+        not_found: |-
+          هااااا، من هیچ فرمت ویرایشی در پاسخت پیدا نکردم. :sweat_smile:
+          
+          میتونی دوباره امتحان کنی؟ از دکمه های <kbd><b>B</b></kbd> بولد یا <kbd><i>I</i></kbd> ایتالیک  هم میتونی کمک بگیری.
+      quoting:
+        instructions: |-
+          حالا بیا و قسمتی از حرفای من رو در پاسخت نقل قول کن، تا بدونم داری به کدوم قسمت حرفام جواب میدی.
+          > اگه این قهوه‌س لطفا برام یه چای بیار و اگه چای ه، یه کم قهوه!
+          > 
+          > خوبی حرف زدن با خودت اینه که میدونی حداقل یه نفر داره گوش میده.
+          
+          قسمتی از جمله &uarr که میخوای نقل قولش کنی رو انتخاب کن؛ و بعد روی گزینه‌ی **نقل قول** که در پاپ آپ بالای این قسمت انتخاب شده ظاهر میشه کلیک کن - و یا دکمه ی **پاسخ** در پایین این پست رو کلیک کن.
+          
+          در زیر نقل قول، در یکی دو کلمه توضیح بده چرا این نقل قول رو انتخاب کردی؟ کنجکاو شدم :thinking:
+        reply: |-
+          عالی، نقل قول مورد علاقه من رو انتخاب کردی! :left_speech_bubble:
+        not_found: |-
+          همممم، به نظر میرسه تو پاسخت از من نقل قول نکردی.
+          
+          با گرفتن هر قسمتی از تکست در متن دکمه ی **نقل قول**  در بالای اون ظاهر میشه. و یا با کلیک بر روی  **پاسخ** وقتی کلمه ای رو گرفتی، باز هم این اتفاق میفته. میتونی دوباره امتحان کنی؟          
+
+      bookmark:
+        instructions: |-
+          اگه مایلی بیشتر یاد بگیری، <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> در پایین رو انتخاب کن و با فشردن <img src="/images/font-awesome-bookmark.png" width="16" height="16"> این **پیام رو بوکمارک کن**. اگه این کار رو بکنی، بعدتر یه :gift: کوچیک برات دارم.
+        reply: |-
+          عالی! حالا راحت میتونی هر موقع خواستی راهت رو به این پیام خصوصی پیدا کن، کافیه در [قسمت بوکمارک‌ها](%{profile_page_url}/activity/bookmarks) در صفحه شخصیت رو بگردی. روی آواتارت در گوشه ی سمت راست بالا کلیک کن &#8599.
+        not_found: |-
+          هممم، من هیچ بوکمارکی در این موضوع نمیبنیم. ایا دکمه ی بوکمارک رو در زیر هر موضوع پیدا کردی؟ اگه لازمه دکمه ی نمایش بیشتر  <img src="/images/font-awesome-ellipsis.png" width="16" height="16">  رو استفاده کن تا امکانات بیشتری ببینی.
+      emoji:
+        instructions: |-
+          ممکنه دیده باشی که در پاسخ‌هام، از یه سری شکلک کمک میگیرم:blue_car::dash: . اینا همون [اسمایلی‌ها](https://en.wikipedia.org/wiki/Emoji) هستن.
+          
+          میشه **یه شکلک** در پاسخ بعدیت بذاری؟ با هر کدوم از این روش‌ها قبوله:
+          
+          - بنویس `:) ;) :D :P :O`
+          
+          - دو نقطه بذار <kbd>:</kbd> و بعد اسم شکلک رو بنویس `:tada:`
+          
+          - دکمه ی شکلک <img src="/images/font-awesome-smile.png" width="16" height="16"> رو در ویرایشگر کلیک کن.
+        reply: |-
+          کاملا :sparkles: _شکلک!_ :sparkles:
+        not_found: |-
+          اوپس! هیچ شکلکی در پیامت نمیبینم؟  :sob:
+          
+          یه دو نقطه بذار <kbd>:</kbd> و انتخابگر شکلک میاد بالا، بعد حروف اول کلمه ی مورد نظرت رو بذار و خودش میاد، مثلا `:bird:`. 
+          
+          یا روی دکمه ی <img src="/images/font-awesome-smile.png" width="16" height="16"> در ویراستار فشار بده.
+          
+          اگه از گوشی استفاده میکنی میتونی از شکلک های صفحه کلیدت هم استفاده کنی.
+      mention:
+        instructions: |-
+          گاهی میخوای توجه یکی رو جلب کنی، کافیه از `@` و بعد نوشتن نام کاربری شون کمک بگیری.
+          
+          میتونی در پاسخ بعدیت **@%{discobot_username}** رو صدا کنی؟
+        reply: |-
+          _کسی اسم من رو برد؟!_ :raised_hand: مطمئنم کار تو بود! :wave:  من اینجام! مرسی که صدام کردی. :ok_hand:
+        not_found: |-
+          من اسمم رو اینجا نمیبینم :frowning: میشه من رو دوباره صدا کنی؟ `@%{discobot_username}` 
+          
+          و بله، نام کاربری من _disco_، مثل رقص‌ها دهه ۱۹۷۰ هست.  من [عاشق رقصم!](https://www.youtube.com/watch?v=B_wGI3_sGf8) :dancer: .
+
+      flag:
+        instructions: |-
+          ما بحث‌های دوستانه و با استدلال رو دوست داریم، و لازمه به هم کمک کنیم که [اینجا متمدن بمون](%{guidelines_url}). اگه مشکلی دیدی، لطفا روی دکمه ی پرچم بزن تا به نویسنده ی مطلب و یا [به ادمین‌های مهربون اینجا ](%{about_url}) بگی تا اصلاحش کنن.
+          
+          >  :imp: فکر کن من یه چیز زشت و بد اینجا نوشتم که ترجیح میدی اینجا نباشه
+          
+          فکر کنم میدونی چی کار کنی. پیش برو و **این نوشته رو به عنوان نوشته‌ی نامناسب پرچم بزن** <img src="/images/font-awesome-flag.png" width="16" height="16">! اگه لازم بود از دکمه ی نمایش بیشتر <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> برای دیدن دکمه ‌های بیشتر در زیر پست کمک بگیر.
+        reply: |-
+          [ادمین های ما](/about) پرچم شما رو میگیرن. اگه افراد کافی پستی رو پرچم گذاری کنن، پست خود به خود مخفی میشه. 
+          
+          چون پستم خیلی خز نبود :angel:, فعلا پرچم رو پاک کردم.
+        not_found: |-
+          هممم، متن زشت من هنوز پرچم نخورده.  :worried: میشه به عنوان یه پست نامناسب با <img src="/images/font-awesome-flag.png" width="16" height="16"> پرچم بزنی بهش؟ اگه لازمه از دکمه ی <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> برای دیدن امکانات بیشتر در زیر پست ها کمک بگیر.
+      search:
+        instructions: |-
+          _ها ها_ ... برات تو یکی از پاسخای قبلیم یه سورپرایز گذاشتم. اگه پایه ی چالش هستی، **دکمه ی جستجو** رو در گوشه‌ی سمت چپ &#8598 بالا بزن <img src="/images/font-awesome-search.png" width="16" height="16"> و دنبالش بگرد.
+          
+          دنبال عبارت   "capy&#8203;bara"  در این موضوع بگرد.
+        hidden_message: |-
+          چجوری این کاپی بارای رو ندیدی؟ :wink:
+          
+          <img src="/images/capybara-eating.gif"/>
+          
+          توجه کردی که به اول کار برگشتی؟ به این کاپی بارای بیچاره با **شکلک** :herb: تو پاسخت غذا بده تا خود به خود به آخر برگردی.
+        reply: |-
+          واوو! پیداش کردی :tada:
+          
+          - برای جستجو با جزئیات بیشتر، کافیه به [صفحه ی جستجو](%{search_url}) بری و یا گزینه ی جستجوی پیشرفته رو بزنی.
+          
+          - برای پریدن به هر جایی از یه بحث طولانی، می‌تونی از کنترل مکان موضوع در سمت چپ بهره ببری &rarr;
+          
+          - اگه یه کیبورد کیس داری :keyboard:، روی <kbd>?</kbd> انگلیسی کلیک کن تا دکمه‌های میانبر رو که مثل آچار فرانسه میمونن ببینی.
+        not_found: |-
+          همممم. به نظر میرسه مشکلی هست. متاسفم. آیا عبارت **capy&#8203;bara** را جستجو <img src="/images/font-awesome-search.png" width="16" height="16"> کردی؟
+          
+          (حواست باشه جستجوت رو به تاپیک کنونی محدود کنی!)
+      end:
+        message: |-
+          این همه‌ی چیزهایی بود که الان می‌خواستم نشونت بدم @%{username} -- مرسی که تا اینجا همراهم اومدی! دوست دارم یه جایزه هدیه گونه بهت بدم، و این رو برات ساختم:
+          
+          %{certificate}
+          
+          الان به [**تجربه‌های تازه**](/latest) در فوروم سر بزن. و اگه خواستی راجع به امکانات پیشرفته‌تر بدونی کافیه من رو با کلمه‌ی جادویی زیر صدا کنی: `@%{discobot_username} %{advanced_trigger}`.
+
+      certificate:
+        alt: 'Certificate of Achievement'
+
+    advanced_user_narrative:
+      cert_title: "In recognition of successful completion of the advanced user tutorial"
+      title: ':arrow_up: Advanced user features'
+      start_message: |-
+          @%{username} به عنوان یه کاربر سطح بالا، ایا به  [صفحه شخصیت](/my/preferences)  سر زدی؟ می‌دونستی میتونی تم های سایت رو هم برای خودت به صورت روشن یا تاریک شخصی سازی کنی؟
+      
+      edit:
+        bot_created_post_raw: "@%{discobot_username} باحال ترین روباتی هست که من میشناسم! :wink:"
+        instructions: |-
+          وقتی داریم می‌نویسیم، ممکنه اشتباهاتی در نوشتن داشته باشیم. برا همین خوبه که امکان ویرایش پست مون رو داشته باشیم.
+          
+          میتونی پستی که الان از طرف تو ساختم رو ویرایش کنی و بهم نشون بدی که می‌تونی یه پست رو به راحتی اصلاح کنی؟      
+        not_found: |-
+          به نظر میرسه هنوز [پستی](%{url}) که از طرفت ساختم رو ویرایش نکردی میشه دوباره سعی کنی؟
+          
+          از ایکون  <img src="/images/font-awesome-pencil.png" width="16" height="16"> برای دسترسی به ویرایشگر استفاده کن.
+        reply: |-
+          عالی!
+          
+          توجه کن که ویرایش هایی که بعد از ۵ دقیقه از نوشتن پست انجام میشه، با یه مداد نارنجی کوچک در گوشه ی سمت چپ به بقیه هم نمایش داده میشه.
+
+      delete:
+        instructions: |-
+          یه کار دیگه که با پستت میتونی بکنی اینه که پاکش کنی!
+          
+          <img src="/images/delete.gif"/>
+          
+          برو بالا و یکی از پست هات رو پاک کن. اگه لازمه از دکمه ی نمایش بیشتر <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> برای دیدن دکمه :wastebasket: کمک بگیر.         
+        not_found: |-
+          I don’t see any deleted posts yet? Remember <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> show more will reveal <img src="/images/font-awesome-trash.png" width="16" height="16"> delete.
+        reply: |-
+          واوو! :boom:
+          
+          برای حفظ انسجام بحث ها، پاک شدن پست ها فوری اتفاق نمیفته و بعد از مدتی پست ها واقعا پاک میشن.
+      recover:
+        deleted_post_raw: 'Why did @%{discobot_username} delete my post? :anguished:'
+        instructions: |-
+          اوخ! به نظر می‌رسه من تصادفا پستی که برات ساخته بودم رو پاک کردم. ولی نگرانی نیست، میتونیم دوباره بازیافتش کنیم.
+          
+          یه لطفی بکن و روی دکمه ی نمایش بیشتر <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> بزن و بعد هم روی <img src="/images/font-awesome-rotate-left.png" width="16" height="16">.
+        not_found: |-
+          به مشکلی برخوردی؟ حواست باشه برای دیدن «بازگردانی» لازمه از  <img src="/images/font-awesome-ellipsis.png" width="16" height="16"> کمک بگیری.
+        reply: |-
+          عاالی بود! به طور پیش فرض، فقط ۲۴ ساعت وقت داری برای برگردوندن پست هایی که پاک کردی.
+      category_hashtag:
+        instructions: |-
+          میدونی میتونی هشتگ یکی از اتاق ها رو در موضوعت بذاری؟ با این کار خیلی راحت میتونی توجه افراد دنبال کننده ی اون اتاق رو جلب کنی.
+          
+          کافیه در وسط جمله تایپ کنی `#` و خودش انتخاب های ممکن رو جلوت میذاره.        
+        not_found: |-
+          من که هیچ کتگوری هیچ جا نمیبینم. حواست باشه هشتگ نمیتونه اولین کارکتر یه جمله باشه و لازمه وسط جمله باشه. میتونی این رو در پاسخ بعدی کپی کنی؟
+
+        reply: |-
+          عالی! اگه برچسب موضوعی فعال هست، این کار رو با تگ ها هم میتونی بکنی.
+      change_topic_notification_level:
+        instructions: |-
+          حالا وقتشه در مورد سطوح اگاه سازی درباره یه موضوع یاد بگیریم تا بتونی محتوای دلخواهت رو در سریع ترین زمان دنبال کنی. به صورت پیش فرض، سطح اگاه سازی یه پیام خصوصی روی «پیگیر» هست و هر بار که برات پیام خصوصی بیاد اگاه سازی میگیری.
+          
+          بیا سطح اگاه سازی این موضوع رو تغییر بدیم. در انتهای پیام، یه دکمه میبینی که بهت «پیگیر» رو نمایش میده. میشه ببریش روی «دنبال کننده» تا فقط در صورتی که من منشن کردمت از طرفم اگاه سازی بگیری؟
+        not_found: |-
+          به نظر می‌رسه هنوز داری این پیام رو پیگیری میکنی :eyes:! اگه در پیدا کردن دکمه مشکلی داشتی، دکمه در زیر مطلب هست.
+
+        reply: |-
+          عالی ! امیدوارم این موضوع رو خاموش نکرده باشی، گاهی پرحرف میشم :grin:.
+          
+          حواست باشه وقتی به یه موضوع پاسخ میدی، یا برا بیش از چند دقیقه میخونیش، به صورت خودکار سطح اگاه سازی ها به «دنبال کردن» میره. این تنظیم رو میتونی تو [صفحه شخصیت](/my/preferences) عوض کنی.
+
+      poll:
+        instructions: |-
+          میدونستی میتونی به یه پست نظرسنجی اضافه کنی؟ 
+          کافیه از دکمه ی چرخدنده <img src="/images/font-awesome-gear.png" width="16" height="16">  موجود در ادیتور کمک بگیری.
+        not_found: |-
+          به نظر میرسه در پاسخت هیچ نظرسنجی نذاشتی. از چرخدنده ی ویراستار <img src="/images/font-awesome-gear.png" width="16" height="16">  کمک بگیر و یا در پاسخ بعدیت نظر سنجی زیر رو بذار؟
+
+              [poll]
+              * :cat:
+              * :dog:
+              [/poll]
+
+        reply: |-
+          عالی! چه نظر سنجی خوبی. من تا الان تو یاد دادن بهت چه جوری بودم؟          
+          [poll]
+          * :+1:
+          * :-1:
+          [/poll]
+      details:
+        instructions: |-
+          حالا بیا ببینیم چه جوری میشه قسمتی از متن رو مخفی کنیم. برای دیدن دستورالعمل روی عنوان زیر کلیک کن :mouse_three_button:.
+          
+          [details=چه جوری قسمتی از متن رو مخفی کنیم تا با انتخاب کاربر باز و بسته بشه]
+          1. روی ایکون :gear: در ویرایشگر کلیک کن.
+          2. دکمه ی "مخفی کردن جزئیات" رو انتخاب کن.
+          3. جزئیات مخفی رو ویرایش کن و ادامه بده.
+          [/details]
+          
+          یه متن مخفی از سه میوه ی مورد علاقه ت در پاسخ بعدی بذار! حواست باشه از ایکون <img src="/images/font-awesome-gear.png" width="16" height="16">  کمک بگیری!
+        not_found: |-
+          Having trouble creating a details widget? Try including the following in your next reply:
+
+              [details=Select me for details]
+              Here are the details
+              [/details]
+        reply: |-
+          عاالی! :thumbsup: از ابزار متن مخفی می‌تونیم برای مخفی کردن اطلاعاتی که میخوای دیده شدنش رو به انتخاب کاربر بذاری هم استفاده کنی.
+      end:
+        message: |-
+          مثل یه کاربر پیشرفته ترکوندی :bow:
+
+          %{certificate}
+          
+          این تمام کمکی بود که از من برمیومد. اگه خواستی باز هم باهام صحبت کنی، کافیه یه پیام شخصی برام بفرستی :sunglasses:
+      certificate:
+        alt: 'Advanced User Track Certificate of Achievement'
